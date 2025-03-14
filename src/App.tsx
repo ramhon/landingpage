@@ -15,7 +15,7 @@ function App() {
   const [language, setLanguage] = useState('PT');
 
   const navItems = [
-    'Inicio', 'Sobre', 'Projetos', 'Politica', 'Videos', 'Infantil', 'Blog', 'Contato'
+    'Inicio', 'Sobre', 'Politica', 'Videos', 'Infantil', 'Contato'
   ];
 
   return (
@@ -40,7 +40,7 @@ function App() {
             <button
               key={item}
               onClick={() => {
-                if (item.toLowerCase() === 'sobre') {
+                if (item.toLowerCase() === 'Politica') {
                   window.location.href = 'https://www.ramhon.com.br/portifolio';
                 } else {
                   setActiveTab(item.toLowerCase());
