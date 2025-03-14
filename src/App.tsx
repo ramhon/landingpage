@@ -17,11 +17,11 @@ function App() {
   const navItems = [
     { name: 'Inicio', link: 'https://www.ramhon.com.br/inicio' },
     { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
-    { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
+    // { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
     { name: 'Politica', link: 'https://www.ramhon.com.br/politica' },
-    { name: 'Videos', link: 'https://www.ramhon.com.br/videos' },
+    // { name: 'Videos', link: 'https://www.ramhon.com.br/videos' },
     { name: 'Infantil', link: 'https://www.ramhon.com.br/infantil' },
-    { name: 'Blog', link: 'https://www.ramhon.com.br/blog' },
+    // { name: 'Blog', link: 'https://www.ramhon.com.br/blog' }
     { name: 'Contato', link: 'https://www.ramhon.com.br/contato' }
   ];
 
@@ -54,6 +54,19 @@ function App() {
           ))}
         </div>
       </nav>
+
+      {/* Social Icons */}
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 flex flex-col space-y-6">
+        <a href="https://www.instagram.com" className="text-white/70 hover:text-white transition-colors">
+          <Instagram size={20} />
+        </a>
+        <a href="https://www.twitter.com" className="text-white/70 hover:text-white transition-colors">
+          <Twitter size={20} />
+        </a>
+        <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">
+          <Linkedin size={20} />
+        </a>
+      </div>
 
       {/* Main Content */}
       <main className="relative h-screen flex items-center justify-center px-6">
