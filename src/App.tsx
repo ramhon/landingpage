@@ -62,9 +62,7 @@ function App() {
         </a>
         <a href="https://www.twitter.com" className="text-white/70 hover:text-white transition-colors">
           <MessageCircleMore size={20} />
-        </a>// <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">
-        //   <Linkedin size={20} />
-        // </a>
+        </a>
       </div>
 
       {/* Main Content */}
