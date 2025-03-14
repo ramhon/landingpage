@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   Play, 
   Instagram, 
-  Message-circle-more, 
+  Message-Circle-More
+  Twitter, 
   Linkedin, 
   Globe,
   Menu,
@@ -57,15 +58,14 @@ function App() {
 
       {/* Social Icons */}
       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 flex flex-col space-y-6">
-        <a href="https://www.instagram.com/ramhon" className="text-white/70 hover:text-white transition-colors">
+        <a href="https://www.instagram.com" className="text-white/70 hover:text-white transition-colors">
           <Instagram size={20} />
         </a>
-        <a href="https://www.ramhon.com.br/contato" className="text-white/70 hover:text-white transition-colors">
-          <message-circle-more size={20} />
-        </a>
-            <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">//
-          <Linkedin size={20} />
-        </a> 
+        <a href="https://www.twitter.com" className="text-white/70 hover:text-white transition-colors">
+          <Twitter size={20} />
+        </a>// <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">
+        //   <Linkedin size={20} />
+        // </a>
       </div>
 
       {/* Main Content */}
