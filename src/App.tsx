@@ -63,9 +63,9 @@ function App() {
         <a href="https://www.ramhon.com.br/contato" className="text-white/70 hover:text-white transition-colors">
           <message-circle-more size={20} />
         </a>
-           // <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">//
-       /   <Linkedin size={20} />/
-      /  </a> /
+            <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">//
+          <Linkedin size={20} />
+        </a> 
       </div>
 
       {/* Main Content */}
