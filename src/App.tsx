@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Play, 
   Instagram, 
-  Message-Circle-More
+  Message-Circle-More,
   Twitter, 
   Linkedin, 
   Globe,
