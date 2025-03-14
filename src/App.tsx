@@ -14,7 +14,7 @@ function App() {
   const [language, setLanguage] = useState('PT');
 
   const navItems = [
-    { name: 'Inicio', link: 'https://www.ramhon.com.br/inicio' },
+    { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
     { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
     { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
     { name: 'Politica', link: 'https://www.ramhon.com.br/politica' },
