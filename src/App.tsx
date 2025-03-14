@@ -18,8 +18,8 @@ function App() {
     { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
     { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
     // { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
-    { name: 'Politica', link: 'https://www.ramhon.com.br/politica' },
-    // { name: 'Videos', link: 'https://www.ramhon.com.br/videos' },
+    { name: 'Politica', link: 'https://www.ramhon.com.br/portifolio' },
+     { name: 'Videos', link: 'https://www.ramhon.com.br/video' },
     { name: 'Infantil', link: 'https://www.ramhon.com.br/infantil' },
     // { name: 'Blog', link: 'https://www.ramhon.com.br/blog' }
     { name: 'Contato', link: 'https://www.ramhon.com.br/contato' }
