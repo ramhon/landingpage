@@ -39,7 +39,13 @@ function App() {
           {navItems.map((item) => (
             <button
               key={item}
-              onClick={() => setActiveTab(item.toLowerCase())}
+              onClick={() => {
+                if (item.toLowerCase() === 'sobre') {
+                  window.location.href = 'https://www.ramhon.com.br/portifolio';
+                } else {
+                  setActiveTab(item.toLowerCase());
+                }
+              }}
               className={`block md:inline-block text-sm font-light tracking-wider transition-colors
                 ${activeTab === item.toLowerCase() ? 'text-red-500' : 'text-white/80 hover:text-white'}`}
             >
