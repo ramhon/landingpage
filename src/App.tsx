@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Play, 
   Instagram, 
-  Facebook, 
+  Twitter, 
   Linkedin, 
   Globe,
   Menu,
@@ -15,7 +15,7 @@ function App() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const navItems = [
-    { name: 'Inicio', link: 'https://www.ramhon.com.br/inicio' },
+    { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
     { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
     // { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
     { name: 'Politica', link: 'https://www.ramhon.com.br/politica' },
@@ -60,7 +60,7 @@ function App() {
         <a href="https://www.instagram.com" className="text-white/70 hover:text-white transition-colors">
           <Instagram size={20} />
         </a>
-        <a href="https://www.whatsapp.com" className="text-white/70 hover:text-white transition-colors">
+        <a href="https://www.twitter.com" className="text-white/70 hover:text-white transition-colors">
           <Twitter size={20} />
         </a>
         <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">
