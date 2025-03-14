@@ -15,7 +15,7 @@ function App() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const navItems = [
-    { name: 'Inicio', link: 'https://www.ramhon.com.br' },
+    { name: 'Inicio', link: 'https://www.ramhon.com.br/inicio' },
     { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
     // { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
     { name: 'Politica', link: 'https://www.ramhon.com.br/politica' },
