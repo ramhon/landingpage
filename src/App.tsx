@@ -12,9 +12,10 @@ import {
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [language, setLanguage] = useState('PT');
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const navItems = [
-    { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
+    { name: 'Inicio', link: 'https://www.ramhon.com.br/inicio' },
     { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
     { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
     { name: 'Politica', link: 'https://www.ramhon.com.br/politica' },
@@ -69,6 +70,47 @@ function App() {
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50 z-10" />
+
+        {/* Central Content */}
+        <div className="relative z-20 text-center">
+          <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
+            Ramhon<span className="text-red-500">.</span>
+          </h1>
+          
+          <button 
+            onClick={() => setIsVideoOpen(true)}
+            className="group relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md"
+          >
+            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-red-500 group-hover:translate-x-0 ease">
+              <Play size={20} />
+            </span>
+            <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">
+              Ver Apresentação
+            </span>
+            <span className="relative invisible">Ver Apresentação</span>
+          </button>
+        </div>
+
+        {/* Video Modal */}
+        {isVideoOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
+            <div className="relative w-3/4 max-w-3xl bg-black rounded-lg overflow-hidden">
+              <button 
+                onClick={() => setIsVideoOpen(false)}
+                className="absolute top-2 right-2 text-white text-2xl"
+              >
+                <X size={24} />
+              </button>
+              <iframe 
+                className="w-full h-96"
+                src="https://www.youtube.com/embed/RCGnf-1YvQs" 
+                title="Apresentação"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
