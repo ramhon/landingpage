@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { 
   Play, 
   Instagram, 
-  Message-Circle-More,
-  Twitter, 
+  MessageCircleMore, 
   Linkedin, 
   Globe,
   Menu,
@@ -62,7 +61,7 @@ function App() {
           <Instagram size={20} />
         </a>
         <a href="https://www.twitter.com" className="text-white/70 hover:text-white transition-colors">
-          <Twitter size={20} />
+          <MessageCircleMore size={20} />
         </a>// <a href="https://www.linkedin.com" className="text-white/70 hover:text-white transition-colors">
         //   <Linkedin size={20} />
         // </a>
