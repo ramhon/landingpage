@@ -14,20 +14,8 @@ function App() {
   const [language, setLanguage] = useState('PT');
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-  const navItems = [
-    { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
-    { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
-    // { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
-    { name: 'Politica', link: 'https://www.ramhon.com.br/portifolio' },
-     { name: 'Videos', link: 'https://www.ramhon.com.br/video' },
-    { name: 'Infantil', link: 'https://www.ramhon.com.br/infantil' },
-    // { name: 'Blog', link: 'https://www.ramhon.com.br/blog' }
-    { name: 'Contato', link: 'https://www.ramhon.com.br/contato' }
-  ];
-
-  return (
+   return (
     <div className="min-h-screen bg-[#121212] text-white relative overflow-hidden">
-      {/* Mobile Menu Button */}
       <button 
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="md:hidden fixed top-6 right-6 z-50 text-white"
@@ -35,7 +23,6 @@ function App() {
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Navigation */}
       <nav className={`
         fixed w-full md:w-auto md:relative z-40 
         ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
@@ -55,7 +42,6 @@ function App() {
         </div>
       </nav>
 
-      {/* Social Icons */}
       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 flex flex-col space-y-6">
         <a href="https://www.instagram.com/ramhon" className="text-white/70 hover:text-white transition-colors">
           <Instagram size={20} />
@@ -65,24 +51,20 @@ function App() {
         </a>
       </div>
 
-      {/* Main Content */}
-      <main className="relative h-screen flex items-center justify-center px-6">
-        {/* Background Image */}
+      <main className="relative h-screen flex items-center px-6">
         <div 
           className="absolute inset-0 z-0 opacity-60"
           style={{
-            backgroundImage: 'url("https://img.playbook.com/l4ES4VK7dOaxJhucsSneeaQczkA6vqKhXihuJOTTVB8/w:1800/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9s/YXJnZV9wcmV2aWV3/cy85Y2UwY2E2NS02/MjUyLTQzOWMtOTE1/ZC0xZTRkMzI3NDA4/Yzk.webp")',
+            backgroundImage: 'url("https://lh3.googleusercontent.com/pw/AP1GczPsBGnad7lr3Oi5HgA-TuU58VF9JdYIrQoubIR1loBDmLiwWHA03oQLcX1yaFqi9R1UNhBrNh9JDXFZAPcyVLSoScoA5SETdHBhFdF8yaeFzWGlwCyb21WB7IqefMRxiTgDaNUAg9cifk1n_v7G7Sa74A=w627-h954-s-no")',
             backgroundSize: 'cover',
             backgroundPosition: '50% 20%',
             filter: 'grayscale(50%)'
           }}
         />
         
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/50 z-10" />
 
-        {/* Central Content */}
-        <div className="relative z-20 text-right mr-20">
+        <div className="relative z-20 text-left ml-20">
           <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
             Ramhon<span className="text-red-500">.</span>
           </h1>
@@ -101,7 +83,6 @@ function App() {
           </button>
         </div>
 
-        {/* Video Modal */}
         {isVideoOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
             <div className="relative w-3/4 max-w-3xl bg-black rounded-lg overflow-hidden">
