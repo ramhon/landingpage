@@ -71,7 +71,7 @@ function App() {
         <div 
           className="absolute inset-0 z-0 opacity-60"
           style={{
-            backgroundImage: 'url("https://lh3.googleusercontent.com/pw/AP1GczPsBGnad7lr3Oi5HgA-TuU58VF9JdYIrQoubIR1loBDmLiwWHA03oQLcX1yaFqi9R1UNhBrNh9JDXFZAPcyVLSoScoA5SETdHBhFdF8yaeFzWGlwCyb21WB7IqefMRxiTgDaNUAg9cifk1n_v7G7Sa74A=w627-h954-s-no")',
+            backgroundImage: 'url("https://img.playbook.com/l4ES4VK7dOaxJhucsSneeaQczkA6vqKhXihuJOTTVB8/w:1800/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9s/YXJnZV9wcmV2aWV3/cy85Y2UwY2E2NS02/MjUyLTQzOWMtOTE1/ZC0xZTRkMzI3NDA4/Yzk.webp")',
             backgroundSize: 'cover',
             backgroundPosition: '50% 20%',
             filter: 'grayscale(50%)'
