@@ -18,7 +18,7 @@ function App() {
     <div className="min-h-screen bg-[#121212] text-white relative overflow-hidden">
       <button 
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden fixed top-6 right-6 z-50 text-white"
+        className="md:hidden fixed top-6 right-36 z-50 text-white"
       >
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -64,7 +64,7 @@ function App() {
         
         <div className="absolute inset-0 bg-black/50 z-10" />
 
-        <div className="relative z-20 text-left ml-20">
+        <div className="relative z-60 text-left ml-60">
           <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
             Ramhon<span className="text-red-500">.</span>
           </h1>
