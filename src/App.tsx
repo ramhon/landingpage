@@ -25,12 +25,15 @@ import React, { useState } from 'react';
  
    return (
      <div className="min-h-screen bg-[#121212] text-white relative overflow-hidden">
-       <button 
-         onClick={() => setIsMenuOpen(!isMenuOpen)}
-         className="md:hidden fixed top-6 right-6 z-50 text-white"
-       >
-         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-       </button>
+       <div className="fixed top-6 right-6 z-50 flex items-center space-x-4">
+         <h1 className="text-xl font-semibold tracking-wide">Ramhon Peixoto<span className="text-red-500">.</span></h1>
+         <button 
+           onClick={() => setIsMenuOpen(!isMenuOpen)}
+           className="md:hidden text-white"
+         >
+           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+         </button>
+       </div>
  
        <nav className={`
          fixed w-full md:w-auto md:relative z-40 
