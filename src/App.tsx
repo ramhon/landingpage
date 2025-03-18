@@ -77,21 +77,21 @@ function App() {
         
        // <div className="absolute inset-0 bg-black/50 z-10" />
 
-        <div className="relative z-20 text-right mr-20">
+       // <div className="relative z-20 text-right mr-20">
                    
-           <button 
-            onClick={() => setIsVideoOpen(true)}
-            className="group relative inline-flex items-center justify-center p-4 w-16 h-16 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md bg-black hover:bg-gray-800"
-          > setIsVideoOpen(true)}
-            className="group relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md"
-          >
-            <Play size={24} />
-          </button>
+       //    <button 
+         //   onClick={() => setIsVideoOpen(true)}
+       //     className="group relative inline-flex items-center justify-center p-4 w-16 h-16 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md bg-black hover:bg-gray-800"
+       //   > setIsVideoOpen(true)}
+         //   className="group relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md"
+      //    >
+      //      <Play size={24} />
+      //    </button>
 
-          <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
-               RamhonPeixoto<span className="text-red-500">.</span>
-          </h1>
-        </div>
+     //     <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
+     //          RamhonPeixoto<span className="text-red-500">.</span>
+     //     </h1>
+   //     </div>
 
         {isVideoOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
