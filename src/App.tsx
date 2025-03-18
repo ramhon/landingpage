@@ -32,10 +32,10 @@ function App() {
         className="md:hidden fixed top-6 right-6 z-50 text-white"
       >
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+    //  </button>
 
-      <nav className={`
-        fixed w-full md:w-auto md:relative z-40 
+   //   <nav className={`
+     //   fixed w-full md:w-auto md:relative z-40 
         ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         transition-transform duration-300 ease-in-out
       `}>
@@ -62,18 +62,18 @@ function App() {
         </a>
       </div>
 
-     <main className="relative h-screen flex items-center justify-center px-6 mt-60">
-        <div 
-          className="absolute inset-0 z-0 opacity-60"
-          style={{
-            backgroundImage: `url(${window.innerWidth <= 768
-              ? "https://img.playbook.com/sDRF-hyk3YQOIV5qNwTP-M8YB0Hy6_xPkiP7D9OPu2k/s:391:845/exp:1742428799/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvOGI1MDI3/NzUtODM3YS00YmQ2/LWI4YTctNDAyYTBk/NTc2N2Ji.webp"
-              : "https://img.playbook.com/l4ES4VK7dOaxJhucsSneeaQczkA6vqKhXihuJOTTVB8/w:1800/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9s/YXJnZV9wcmV2aWV3/cy85Y2UwY2E2NS02/MjUyLTQzOWMtOTE1/ZC0xZTRkMzI3NDA4/Yzk.webp"})`,
-            backgroundSize: "cover",
-            backgroundPosition: "50% 20%",
-            filter: "grayscale(50%)"
-          }}
-        />
+   //  <main className="relative h-screen flex items-center justify-center px-6 mt-60">
+   //     <div 
+   //       className="absolute inset-0 z-0 opacity-60"
+   //       style={{
+   //         backgroundImage: `url(${window.innerWidth <= 768
+   //           ? "https://img.playbook.com/sDRF-hyk3YQOIV5qNwTP-M8YB0Hy6_xPkiP7D9OPu2k/s:391:845/exp:1742428799/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvOGI1MDI3/NzUtODM3YS00YmQ2/LWI4YTctNDAyYTBk/NTc2N2Ji.webp"
+   //           : "https://img.playbook.com/l4ES4VK7dOaxJhucsSneeaQczkA6vqKhXihuJOTTVB8/w:1800/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9s/YXJnZV9wcmV2aWV3/cy85Y2UwY2E2NS02/MjUyLTQzOWMtOTE1/ZC0xZTRkMzI3NDA4/Yzk.webp"})`,
+   //         backgroundSize: "cover",
+   //         backgroundPosition: "50% 20%",
+   //         filter: "grayscale(50%)"
+   //       }}
+   //     />
         
        // <div className="absolute inset-0 bg-black/50 z-10" />
 
