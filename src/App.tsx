@@ -93,27 +93,27 @@ function App() {
      //     </h1>
    //     </div>
 
-        {isVideoOpen && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-            <div className="relative w-3/4 max-w-3xl bg-black rounded-lg overflow-hidden">
-              <button 
-            onClick={() => setIsVideoOpen(true)}
-            className="group relative inline-flex items-center justify-center p-4 w-16 h-16 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md bg-black hover:bg-gray-800"
-          > setIsVideoOpen(false)}
-                className="absolute top-2 right-2 text-white text-2xl"
-              >
-                <X size={24} />
-              </button>
-              <iframe 
-                className="w-full h-96"
-                src="https://www.youtube.com/embed/RCGnf-1YvQs" 
-                title="Apresentação"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        )}
+  //      {isVideoOpen && (
+   //       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
+    //        <div className="relative w-3/4 max-w-3xl bg-black rounded-lg overflow-hidden">
+      //        <button 
+        //    onClick={() => setIsVideoOpen(true)}
+          //  className="group relative inline-flex items-center justify-center p-4 w-16 h-16 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md bg-black hover:bg-gray-800"
+//          > setIsVideoOpen(false)}
+  //              className="absolute top-2 right-2 text-white text-2xl"
+    //          >
+      //          <X size={24} />
+        //      </button>
+          //    <iframe 
+//                className="w-full h-96"
+  //              src="https://www.youtube.com/embed/RCGnf-1YvQs" 
+    //            title="Apresentação"
+      //          frameBorder="0"
+        //        allowFullScreen
+//              ></iframe>
+  //          </div>
+    //      </div>
+      //  )}
       </main>
     </div>
   );
