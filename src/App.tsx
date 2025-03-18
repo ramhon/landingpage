@@ -25,7 +25,7 @@ import React, { useState } from 'react';
  
    return (
      <div className="min-h-screen bg-[#121212] text-white relative overflow-hidden">
-       <div className="fixed top-6 right-6 z-50 flex items-center space-x-4">
+       <div className="fixed top-6 left-6 z-50 flex items-center space-x-4">
          <h1 className="text-xl font-semibold tracking-wide">Ramhon Peixoto<span className="text-red-500">.</span></h1>
          <button 
            onClick={() => setIsMenuOpen(!isMenuOpen)}
