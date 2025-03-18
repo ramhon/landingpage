@@ -77,9 +77,9 @@ function App() {
         
         <div className="absolute inset-0 bg-black/50 z-10" />
 
-        <div className="relative z-20 text-right mr-20">
+        <div className="relative z-40 text-right mr-20">
           <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
-            Ramhon<span className="text-red-500">.</span>
+             Ramhon<span className="text-red-500">.</span>
           </h1>
           
            <button 
