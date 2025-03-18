@@ -62,7 +62,7 @@ function App() {
         </a>
       </div>
 
-     <main className="relative h-screen flex items-center justify-center px-6 mt-20">
+     <main className="relative h-screen flex items-center justify-center px-6 mt-60">
         <div 
           className="absolute inset-0 z-0 opacity-60"
           style={{
