@@ -17,11 +17,9 @@ import React, { useState } from 'react';
    const navItems = [
      { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
      { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
-     // { name: 'Projetos', link: 'https://www.ramhon.com.br/projetos' },
      { name: 'Politica', link: 'https://www.ramhon.com.br/portifolio' },
       { name: 'Videos', link: 'https://www.ramhon.com.br/video' },
      { name: 'Infantil', link: 'https://www.ramhon.com.br/infantil' },
-     // { name: 'Blog', link: 'https://www.ramhon.com.br/blog' }
      { name: 'Contato', link: 'https://www.ramhon.com.br/contato', target: '_blank', rel: 'noopener noreferrer' }
    ];
  
@@ -93,10 +91,10 @@ import React, { useState } from 'react';
  
          {isVideoOpen && (
            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-             <div className="relative w-3/4 max-w-3xl bg-black rounded-lg overflow-hidden">
+             <div className="relative w-4/4 max-w-3xl bg-black rounded-lg overflow-hidden">
                <button 
                  onClick={() => setIsVideoOpen(false)}
-                 className="absolute top-2 right-2 text-white text-2xl"
+                 className="absolute top-2 right-2 text-white text-2x2"
                >
                  <X size={24} />
                </button>
