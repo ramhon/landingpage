@@ -83,17 +83,12 @@ function App() {
           </h1>
           
           <button 
-            onClick={() => setIsVideoOpen(true)}
-            className="group relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md"
-          >
-            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-red-500 group-hover:translate-x-0 ease">
-              <Play size={20} />
-            </span>
-            <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-              Ver Apresentação
-            </span>
-            <span className="relative invisible">Ver Apresentação</span>
-          </button>
+  onClick={() => setIsVideoOpen(true)}
+  className="group relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md"
+>
+  <Play size={24} />
+</button>
+
         </div>
 
         {isVideoOpen && (
