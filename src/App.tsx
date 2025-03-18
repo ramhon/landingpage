@@ -57,7 +57,7 @@ function App() {
         <a href="https://www.instagram.com/ramhon" className="text-white/70 hover:text-white transition-colors">
           <Instagram size={20} />
         </a>
-        <a href="https://www.ramhon.com.br/contato" className="text-white/70 hover:text-white transition-colors">
+        <a href="https://www.ramhon.com.br/contato', target: '_blank', rel: 'noopener noreferrer' className="text-white/70 hover:text-white transition-colors">
           <MessageCircleMore size={20} />
         </a>
       </div>
