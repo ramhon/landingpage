@@ -51,17 +51,8 @@ import React, { useState } from 'react';
          </div>
        </nav>
  
-       <div className="fixed left-6 top-1/2 -translate-y-1/2 z-30 flex flex-col space-y-6">
-         <a href="https://www.instagram.com/ramhon" className="text-white/70 hover:text-white transition-colors">
-           <Instagram size={20} />
-         </a>
-         <a href="https://www.ramhon.com.br/contato" className="text-white/70 hover:text-white transition-colors">
-           <MessageCircleMore size={20} />
-         </a>
-       </div>
- 
-       <main className="relative h-screen flex flex-col items-start justify-start px-6 pt-10">
-         <div className="relative z-20 text-left ml-10">
+       <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-10">
+         <div className="relative z-20 text-left ml-10 mb-10">
            <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
              Ramhon<span className="text-red-500">.</span>
            </h1>
@@ -73,40 +64,6 @@ import React, { useState } from 'react';
              <Play size={48} />
            </button>
          </div>
- 
-         <div 
-           className="absolute inset-0 z-0 opacity-60"
-           style={{
-             backgroundImage: `url(${window.innerWidth <= 768
-               ? "https://img.playbook.com/sDRF-hyk3YQOIV5qNwTP-M8YB0Hy6_xPkiP7D9OPu2k/s:391:845/exp:1742428799/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvOGI1MDI3/NzUtODM3YS00YmQ2/LWI4YTctNDAyYTBk/NTc2N2Ji.webp"
-               : "https://img.playbook.com/l4ES4VK7dOaxJhucsSneeaQczkA6vqKhXihuJOTTVB8/w:1800/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9s/YXJnZV9wcmV2aWV3/cy85Y2UwY2E2NS02/MjUyLTQzOWMtOTE1/ZC0xZTRkMzI3NDA4/Yzk.webp"})`,
-             backgroundSize: "cover",
-             backgroundPosition: "50% 20%",
-             filter: "grayscale(50%)"
-           }}
-         />
- 
-         <div className="absolute inset-0 bg-black/50 z-10" />
- 
-         {isVideoOpen && (
-           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-             <div className="relative w-4/4 max-w-3xl bg-black rounded-lg overflow-hidden">
-               <button 
-                 onClick={() => setIsVideoOpen(false)}
-                 className="absolute top-2 right-2 text-white text-2x2"
-               >
-                 <X size={24} />
-               </button>
-               <iframe 
-                 className="w-full h-96"
-                 src="https://www.youtube.com/embed/RCGnf-1YvQs" 
-                 title="Apresentação"
-                 frameBorder="0"
-                 allowFullScreen
-               ></iframe>
-             </div>
-           </div>
-         )}
        </main>
      </div>
    );
