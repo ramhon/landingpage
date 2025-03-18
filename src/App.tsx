@@ -60,7 +60,20 @@ import React, { useState } from 'react';
          </a>
        </div>
  
-       <main className="relative h-screen flex items-center justify-center px-6">
+       <main className="relative h-screen flex flex-col items-start justify-start px-6 pt-10">
+         <div className="relative z-20 text-left ml-10">
+           <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
+             Ramhon<span className="text-red-500">.</span>
+           </h1>
+ 
+           <button 
+                onClick={() => setIsVideoOpen(true)}
+                className="group relative inline-flex items-center justify-center p-12 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
+           >
+             <Play size={48} />
+           </button>
+         </div>
+ 
          <div 
            className="absolute inset-0 z-0 opacity-60"
            style={{
@@ -74,20 +87,6 @@ import React, { useState } from 'react';
          />
  
          <div className="absolute inset-0 bg-black/50 z-10" />
- 
-         <div className="relative z-20 text-right mr-20">
-           <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
-             Ramhon<span className="text-red-500">.</span>
-           </h1>
- 
-           <button 
-                onClick={() => setIsVideoOpen(true)}
-   className="group relative inline-flex items-center justify-center p-12 overflow-hidden font-medium text-white transition duration-300 ease-out border-4 border-white rounded-full shadow-md"
- >
-   <Play size={24} />
- </button>
- 
-         </div>
  
          {isVideoOpen && (
            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
