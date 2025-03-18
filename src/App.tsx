@@ -52,6 +52,20 @@ import React, { useState } from 'react';
        </nav>
  
        <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-10">
+         <div 
+           className="absolute inset-0 z-0 opacity-60"
+           style={{
+             backgroundImage: `url(${window.innerWidth <= 768
+               ? "https://img.playbook.com/sDRF-hyk3YQOIV5qNwTP-M8YB0Hy6_xPkiP7D9OPu2k/s:391:845/exp:1742428799/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvOGI1MDI3/NzUtODM3YS00YmQ2/LWI4YTctNDAyYTBk/NTc2N2Ji.webp"
+               : "https://img.playbook.com/l4ES4VK7dOaxJhucsSneeaQczkA6vqKhXihuJOTTVB8/w:1800/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9s/YXJnZV9wcmV2aWV3/cy85Y2UwY2E2NS02/MjUyLTQzOWMtOTE1/ZC0xZTRkMzI3NDA4/Yzk.webp"})`,
+             backgroundSize: "cover",
+             backgroundPosition: "50% 20%",
+             filter: "grayscale(50%)"
+           }}
+         />
+ 
+         <div className="absolute inset-0 bg-black/50 z-10" />
+ 
          <div className="relative z-20 text-left ml-10 mb-10 flex flex-col items-center space-y-6">
            <button 
                 onClick={() => setIsVideoOpen(true)}
