@@ -79,7 +79,7 @@ import React, { useState } from 'react';
  
          <div className="relative z-20 text-right mr-20">
            <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
-             Ramhon Peixoto<span className="text-red-500">.</span>
+             Ramhon<span className="text-red-500">.</span>
            </h1>
  
            <button 
