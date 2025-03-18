@@ -79,7 +79,7 @@ function App() {
 
         <div className="relative z-200 text-right mr-200">
           <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
-               Ramhon<span className="text-red-500">.</span>
+               Ramhon Peixoto<span className="text-red-500">.</span>
           </h1>
           
            <button 
