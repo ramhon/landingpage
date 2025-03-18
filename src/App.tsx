@@ -52,8 +52,8 @@ import React, { useState } from 'react';
        </nav>
  
        <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-10">
-         <div className="relative z-20 text-left ml-10 mb-10">
-           <h1 className="text-6xl md:text-8xl font-light tracking-wider mb-8">
+         <div className="relative z-20 text-left ml-10 mb-10 flex items-center space-x-6">
+           <h1 className="text-6xl md:text-8xl font-light tracking-wider">
              Ramhon<span className="text-red-500">.</span>
            </h1>
  
