@@ -72,7 +72,7 @@ import React, { useState } from 'react';
          <div className="relative z-20 text-left ml-10 mb-10 flex flex-col items-center space-y-6">
            <button 
                 onClick={() => setIsVideoOpen(true)}
-                className="group relative inline-flex items-center justify-center p-12 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
+                className="group relative inline-flex items-center justify-center p-8 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
            >
              <Play size={48} />
            </button>
