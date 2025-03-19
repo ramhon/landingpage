@@ -20,7 +20,7 @@ import React, { useState } from 'react';
      { name: 'Politica', link: 'https://www.ramhon.com.br/portifolio' },
       { name: 'Videos', link: 'https://www.ramhon.com.br/video' },
      { name: 'Infantil', link: 'https://www.ramhon.com.br/infantil' },
-     { name: 'Contato', link: 'https://www.ramhon.com.br/contato', target: '_blank', rel: 'noopener noreferrer' }
+     { name: 'Contato', link:  <a href="https://www.ramhon.com.br/contato" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400"> }
    ];
  
    return (
