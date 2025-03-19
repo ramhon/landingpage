@@ -58,7 +58,7 @@ import React, { useState } from 'react';
          <a href="https://www.instagram.com/ramhon" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
            <Instagram size={32} />
          </a>
-         <a href="https://wa.me/5599999999999" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
+         <a href="https://www.ramhon.com.br/contato" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
            <MessageCircleMore size={32} />
          </a>
        </div>
