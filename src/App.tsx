@@ -63,7 +63,7 @@ import React, { useState } from 'react';
          </a>
        </div>
  
-       <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-10">
+       <main className="relative h-screen flex flex-col items-start justify-center px-6 pb-20">
          <div 
            className="absolute inset-0 z-0 opacity-60"
            style={{
@@ -78,17 +78,23 @@ import React, { useState } from 'react';
  
          <div className="absolute inset-0 bg-black/50 z-10" />
  
-         <div className="relative z-20 text-left ml-10 mb-10 flex flex-col items-center space-y-6">
+         <div className="relative z-20 text-left ml-10 mb-20 flex flex-col items-center space-y-4">
            <button 
                 onClick={() => setIsVideoOpen(true)}
                 className="group relative inline-flex items-center justify-center p-6 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
            >
              <Play size={48} />
            </button>
+           
+           <p className="text-sm font-light text-white/80">Videomaker + Fotógrafo</p>
  
            <h1 className="text-6xl md:text-8xl font-light tracking-wider">
              Ramhon<span className="text-red-500">.</span>
            </h1>
+           
+           <p className="text-base font-light text-white/70 text-center max-w-md">
+             Capturando momentos com um olhar único, transformando cada cena em uma memória inesquecível.
+           </p>
          </div>
        </main>
      </div>
