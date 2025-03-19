@@ -63,7 +63,7 @@ import React, { useState } from 'react';
          </a>
        </div>
  
-       <main className="relative h-screen flex flex-col items-start justify-center px-6 pb-20">
+       <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-28">
          <div 
            className="absolute inset-0 z-0 opacity-60"
            style={{
@@ -78,7 +78,7 @@ import React, { useState } from 'react';
  
          <div className="absolute inset-0 bg-black/50 z-10" />
  
-         <div className="relative z-20 text-left ml-10 mb-20 flex flex-col items-start md:items-center md:self-start md:ml-10 space-y-4">
+         <div className="relative z-20 text-left ml-10 mb-28 flex flex-col items-start md:items-center md:self-start md:ml-10 space-y-4">
            <button 
                 onClick={() => setIsVideoOpen(true)}
                 className="group relative inline-flex items-center justify-center p-6 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
