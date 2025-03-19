@@ -54,6 +54,15 @@ import React, { useState } from 'react';
          </div>
        </nav>
  
+       <div className="fixed bottom-6 left-6 z-50 flex flex-col space-y-4">
+         <a href="https://www.instagram.com/ramhon" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
+           <Instagram size={32} />
+         </a>
+         <a href="https://wa.me/5599999999999" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
+           <MessageCircleMore size={32} />
+         </a>
+       </div>
+ 
        <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-10">
          <div 
            className="absolute inset-0 z-0 opacity-60"
@@ -72,7 +81,7 @@ import React, { useState } from 'react';
          <div className="relative z-20 text-left ml-10 mb-10 flex flex-col items-center space-y-6">
            <button 
                 onClick={() => setIsVideoOpen(true)}
-                className="group relative inline-flex items-center justify-center p-8 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
+                className="group relative inline-flex items-center justify-center p-6 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
            >
              <Play size={48} />
            </button>
