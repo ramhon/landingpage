@@ -78,7 +78,7 @@ import React, { useState } from 'react';
  
          <div className="absolute inset-0 bg-black/50 z-10" />
  
-         <div className="relative z-20 text-left absolute left-6 bottom-6 flex flex-col items-start space-y-4">
+         <div className="relative z-20 text-left fixed bottom-6 left-6 flex flex-col items-start space-y-4">
            <button 
                 onClick={() => setIsVideoOpen(true)}
                 className="group relative inline-flex items-center justify-center p-6 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
@@ -102,4 +102,3 @@ import React, { useState } from 'react';
  }
  
  export default App;
-
