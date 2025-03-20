@@ -58,12 +58,12 @@ import React, { useState } from 'react';
          <a href="https://www.instagram.com/ramhon" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
            <Instagram size={32} />
          </a>
-         <a href="https://wa.me/5599999999999" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
+         <a href="https://www.ramhon.com.br/contato" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
            <MessageCircleMore size={32} />
          </a>
        </div>
  
-       <main className="relative h-screen flex flex-col items-start justify-center px-6 pb-20">
+       <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-6">
          <div 
            className="absolute inset-0 z-0 opacity-60"
            style={{
@@ -78,10 +78,10 @@ import React, { useState } from 'react';
  
          <div className="absolute inset-0 bg-black/50 z-10" />
  
-         <div className="relative z-20 text-left ml-10 mb-20 flex flex-col items-start md:items-center md:self-start md:ml-10 space-y-4">
+         <div className="relative z-20 text-left fixed bottom-20 left-6 flex flex-col items-start space-y-4">
            <button 
                 onClick={() => setIsVideoOpen(true)}
-                className="group relative inline-flex items-center justify-center p-6 overflow-hidden font-medium text-white transition duration-300 ease-out border-8 border-white rounded-full shadow-md"
+                className="group relative inline-flex items-center justify-center p-6 overflow-hidden font-medium text-white transition duration-300 ease-out border-4 border-white rounded-full shadow-md"
            >
              <Play size={48} />
            </button>
@@ -92,10 +92,30 @@ import React, { useState } from 'react';
              Ramhon<span className="text-red-500">.</span>
            </h1>
            
-           <p className="text-base font-light text-white/70 text-left md:text-center max-w-md">
+           <p className="text-base font-light text-white/70 text-left max-w-md">
              Capturando momentos com um olhar único, transformando cada cena em uma memória inesquecível.
            </p>
          </div>
+ 
+         {isVideoOpen && (
+           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
+             <div className="relative w-4/4 max-w-3xl bg-black rounded-lg overflow-hidden">
+               <button 
+                 onClick={() => setIsVideoOpen(false)}
+                 className="absolute top-2 right-2 text-white text-2x2"
+               >
+                 <X size={24} />
+               </button>
+               <iframe 
+                 className="w-full h-96"
+                 src="https://www.youtube.com/embed/RCGnf-1YvQs" 
+                 title="Apresentação"
+                 frameBorder="0"
+                 allowFullScreen
+               ></iframe>
+             </div>
+           </div>
+         )}
        </main>
      </div>
    );
