@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charSet="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramhon Peixoto</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
+
 import React, { useState } from 'react';
  import { 
    Play, 
@@ -96,26 +109,6 @@ import React, { useState } from 'react';
              Capturando momentos com um olhar único, transformando cada cena em uma memória inesquecível.
            </p>
          </div>
- 
-         {isVideoOpen && (
-           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-             <div className="relative w-4/4 max-w-3xl bg-black rounded-lg overflow-hidden">
-               <button 
-                 onClick={() => setIsVideoOpen(false)}
-                 className="absolute top-2 right-2 text-white text-2x2"
-               >
-                 <X size={24} />
-               </button>
-               <iframe 
-                 className="w-full h-96"
-                 src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&amp;badge=0&amp;autoplay=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
-                 title="Apresentação"
-                 frameBorder="0"
-                 allowFullScreen
-               ></iframe>
-             </div>
-           </div>
-         )}
        </main>
      </div>
    );
