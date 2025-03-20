@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Play, 
   Instagram, 
@@ -14,6 +14,10 @@ function App() {
   const [language, setLanguage] = useState('PT');
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
+  useEffect(() => {
+    document.documentElement.lang = 'pt-BR';
+  }, []);
+
   const navItems = [
     { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
     { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
@@ -24,7 +28,7 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white relative overflow-hidden" lang="pt-BR">
+    <div className="min-h-screen bg-[#121212] text-white relative overflow-hidden">
       <div className="fixed top-6 left-6 z-50 flex items-center space-x-4">
         <h1 className="text-xl font-semibold tracking-wide">Ramhon Peixoto<span className="text-red-500">.</span></h1>
         <button 
@@ -109,7 +113,7 @@ function App() {
             </button>
             <iframe 
               className="w-full h-96"
-              src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&amp;badge=0&amp;autoplay=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+              src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&badge=0&autoplay=1&autopause=0&player_id=0&app_id=58479" 
               title="Apresentação"
               frameBorder="0"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
