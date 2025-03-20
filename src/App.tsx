@@ -108,7 +108,7 @@ import React, { useState } from 'react';
                </button>
                <iframe 
                  className="w-full h-96"
-                 src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                 src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&amp;badge=0&amp;autoplay=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
                  title="Apresentação"
                  frameBorder="0"
                  allowFullScreen
