@@ -112,7 +112,7 @@ function App() {
               <X size={24} />
             </button>
             <iframe 
-              className="w-full h-96"
+              className="w-screen h-screen"
               src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&badge=0&autoplay=1&autopause=0&player_id=0&app_id=58479" 
               title="Apresentação"
               frameBorder="0"
