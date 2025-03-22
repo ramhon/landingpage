@@ -104,7 +104,7 @@ function App() {
 
       {isVideoOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-          <div className="relative w-4/4 max-w-3xl bg-black rounded-lg overflow-hidden">
+          <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
             <button 
               onClick={() => setIsVideoOpen(false)}
               className="absolute top-2 right-2 text-white text-2x2"
