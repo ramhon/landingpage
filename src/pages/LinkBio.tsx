@@ -58,7 +58,7 @@ function LinkBio() {
           {[
             {
               to: '/',
-              label: 'Portfólio',
+              label: 'Site',
               icon: Play,
               delay: '100ms',
             },
@@ -69,8 +69,8 @@ function LinkBio() {
               delay: '200ms',
             },
             {
-              to: '/politica',
-              label: 'Galeria',
+              to: '/whatsapp',
+              label: 'Whatsapp',
               icon: Image,
               delay: '300ms',
             },
