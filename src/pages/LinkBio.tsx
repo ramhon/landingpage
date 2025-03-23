@@ -69,7 +69,7 @@ function LinkBio() {
               delay: '200ms',
             },
             {
-              to: '/whatsapp',
+              to: 'https://api.whatsapp.com/send/?phone=5561983832325&text=Oii+Ramhon+Peixoto%2C+vim+atrav%C3%A9s+do+seu+site%21&type=phone_number&app_absent=0',
               label: 'Whatsapp',
               icon: Image,
               delay: '300ms',
