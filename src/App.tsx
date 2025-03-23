@@ -34,7 +34,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
     { path: '/videos', label: 'Videos' },
     { path: '/infantil', label: 'Infantil' },
     { path: '/contato', label: 'Contato' },
-//    { path: '/LinkBio', label: 'LinkBio' },
+    { path: '/LinkBio', label: 'LinkBio' },
   ];
 
   return (
@@ -152,7 +152,7 @@ function AppContent() {
           <Route path="/videos" element={<Videos />} />
           <Route path="/infantil" element={<Kids />} />
           <Route path="/contato" element={<Contact />} />
-{/*        <Route path="/linkbio" element={<LinkBio />} />*/}
+        <Route path="/linkbio" element={<LinkBio />} />
         </Routes>
       </main>
     </div>
