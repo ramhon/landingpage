@@ -152,7 +152,7 @@ function AppContent() {
           <Route path="/videos" element={<Videos />} />
           <Route path="/infantil" element={<Kids />} />
           <Route path="/contato" element={<Contact />} />
-          <Route path="/linkbio" element={<LinkBio />} />
+{/*        <Route path="/linkbio" element={<LinkBio />} />*/}
         </Routes>
       </main>
     </div>
