@@ -79,7 +79,7 @@ function Navigation({ isMenuOpen, setIsMenuOpen }) {
     { path: '/videos', label: 'Videos' },
     { path: '/infantil', label: 'Infantil' },
     { path: '/contato', label: 'Contato' },
-    { path: '/LinkBio', label: 'LinkBio' },
+ //   { path: '/LinkBio', label: 'LinkBio' },
   ];
 
   return (
