@@ -1,128 +1,172 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Play, 
-  Instagram, 
-  MessageCircleMore, 
-  Linkedin, 
-  Globe,
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation
+} from 'react-router-dom';
+import {
+  Instagram,
+  MessageCircleMore,
   Menu,
   X
 } from 'lucide-react';
 
-function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('PT');
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
+// Import pages
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Kids from './pages/Kids';
+import Policy from './pages/Policy';
+import Videos from './pages/Videos';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
+import LinkBio from './pages/LinkBio';
 
-  useEffect(() => {
-    document.documentElement.lang = 'pt-BR';
-  }, []);
-
+// =========================
+// Header e Navigation
+// =========================
+function Header({ isMenuOpen, setIsMenuOpen }) {
+  const location = useLocation();
   const navItems = [
-    { name: 'Inicio', link: 'https://www.ramhon.com.br/' },
-    { name: 'Sobre', link: 'https://www.ramhon.com.br/sobre' },
-    { name: 'Politica', link: 'https://www.ramhon.com.br/portifolio' },
-    { name: 'Videos', link: 'https://www.ramhon.com.br/video' },
-    { name: 'Infantil', link: 'https://www.ramhon.com.br/infantil' },
-    { name: 'Contato', link: 'https://www.ramhon.com.br/contato', target: '_blank', rel: 'noopener noreferrer' }
+    { path: '/', label: 'Inicio' },
+    { path: '/politica', label: 'Politica' },
+    { path: '/videos', label: 'Videos' },
+    { path: '/infantil', label: 'Infantil' },
+    { path: '/contato', label: 'Contato' },
+    { path: '/LinkBio', label: 'LinkBio' },
   ];
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white relative overflow-hidden">
-      <div className="fixed top-6 left-6 z-50 flex items-center space-x-4">
-        <h1 className="text-xl font-semibold tracking-wide">Ramhon Peixoto<span className="text-red-500">.</span></h1>
-        <button 
+    <header className="fixed top-0 left-0 right-0 bg-[#0d0d0d] z-50">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <Link to="/" className="text-2xl font-light text-white">
+          Ramhon<span className="text-red-500">.</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`text-sm font-light tracking-wider transition-colors
+                ${location.pathname === item.path ? 'text-red-500' : 'text-white/80 hover:text-white'}`}
+            >
+              {item.label.toUpperCase()}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-white"
+          className="md:hidden flex items-center text-white gap-2"
         >
+          <span className="text-sm uppercase tracking-wider">Menu</span>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+    </header>
+  );
+}
 
-      <nav className={`
-        fixed w-full md:w-auto md:relative z-40 
-        ${isMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-        transition-transform duration-300 ease-in-out
-      `}>
-        <div className="md:flex items-center justify-center py-8 px-6 md:px-16 space-y-6 md:space-y-0 md:space-x-8
-                      bg-black/90 md:bg-transparent backdrop-blur-lg md:backdrop-blur-none">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.link}
-              className="block md:inline-block text-sm font-light tracking-wider transition-colors text-white/80 hover:text-white"
-            >
-              {item.name.toUpperCase()}
-            </a>
-          ))}
-        </div>
-      </nav>
+function Navigation({ isMenuOpen, setIsMenuOpen }) {
+  const location = useLocation();
+  const navItems = [
+    { path: '/', label: 'Inicio' },
+    { path: '/politica', label: 'Politica' },
+    { path: '/videos', label: 'Videos' },
+    { path: '/infantil', label: 'Infantil' },
+    { path: '/contato', label: 'Contato' },
+    { path: '/LinkBio', label: 'LinkBio' },
+  ];
 
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-4">
-        <a href="https://www.instagram.com/ramhon" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
-          <Instagram size={32} />
-        </a>
-        <a href="https://www.ramhon.com.br/contato" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
-          <MessageCircleMore size={32} />
-        </a>
-      </div>
-
-      <main className="relative h-screen flex flex-col items-start justify-end px-6 pb-6">
-        <div 
-          className="absolute inset-0 z-0 opacity-60"
-          style={{
-            backgroundImage: `url(${window.innerWidth <= 768
-              ? "https://img.playbook.com/sDRF-hyk3YQOIV5qNwTP-M8YB0Hy6_xPkiP7D9OPu2k/s:391:845/exp:1742428799/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvOGI1MDI3/NzUtODM3YS00YmQ2/LWI4YTctNDAyYTBk/NTc2N2Ji.webp"
-              : "https://img.playbook.com/l4ES4VK7dOaxJhucsSneeaQczkA6vqKhXihuJOTTVB8/w:1800/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9s/YXJnZV9wcmV2aWV3/cy85Y2UwY2E2NS02/MjUyLTQzOWMtOTE1/ZC0xZTRkMzI3NDA4/Yzk.webp"})`,
-            backgroundSize: "cover",
-            backgroundPosition: "50% 20%",
-            filter: "grayscale(50%)"
-          }}
-        />
-
-        <div className="absolute inset-0 bg-black/50 z-10" />
-
-        <div className="relative z-20 text-left fixed bottom-52 left-6 flex flex-col items-start space-y-4">
-          <button 
-               onClick={() => setIsVideoOpen(true)}
-               className="group relative inline-flex items-center justify-center p-6 overflow-hidden font-medium text-white transition duration-300 ease-out border-4 border-white rounded-full shadow-md"
+  return (
+    <nav
+      className={`
+      fixed top-20 left-0 right-0 bg-black/90 backdrop-blur-lg md:hidden
+      transform ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}
+      transition-transform duration-300 ease-in-out z-40
+    `}
+    >
+      <div className="px-6 py-8 space-y-6">
+        {navItems.map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            onClick={() => setIsMenuOpen(false)}
+            className={`block text-sm font-light tracking-wider transition-colors
+              ${location.pathname === item.path ? 'text-red-500' : 'text-white/80 hover:text-white'}`}
           >
-            <Play size={48} />
-          </button>
-          
-          <p className="text-sm font-light text-white/80">Videomaker + Fotógrafo</p>
+            {item.label.toUpperCase()}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+}
 
-          <h1 className="text-6xl md:text-8xl font-light tracking-wider">
-            Ramhon<span className="text-red-500">.</span>
-          </h1>
-          
-          <p className="text-base font-light text-white/70 text-left max-w-md">
-            Capturando momentos com um olhar único, transformando cada cena em uma memória inesquecível.
-          </p>
-        </div>
-      </main>
+// =========================
+// Novo componente que usa useLocation pra esconder redes
+// =========================
+function AppContent() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-      {isVideoOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-          <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-            <button 
-              onClick={() => setIsVideoOpen(false)}
-              className="absolute top-2 right-2 text-white text-2x2"
-            >
-              <X size={24} />
-            </button>
-            <iframe 
-              className="w-screen h-screen"
-              src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&badge=0&autoplay=1&autopause=0&player_id=0&app_id=58479" 
-              title="Apresentação"
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-              allowFullScreen
-            ></iframe>
-          </div>
+  const location = useLocation();
+
+  return (
+    <div className="min-h-screen bg-[#121212] text-white relative">
+      <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+
+      {/* Social Icons - some em /LinkBio */}
+      ({location.pathname !== '/LinkBio' && location.pathname !== '/contato' && (
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-4">
+          <a
+            href="https://www.instagram.com/ramhon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-gray-400"
+          >
+            <Instagram size={32} />
+          </a>
+          <a
+            href="https://www.ramhon.com.br/contato"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-gray-400"
+          >
+            <MessageCircleMore size={32} />
+          </a>
         </div>
       )}
+
+      {/* Main Content */}
+      <main className="pt-20">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sobre" element={<About />} />
+          <Route path="/projetos" element={<Projects />} />
+          <Route path="/politica" element={<Policy />} />
+          <Route path="/videos" element={<Videos />} />
+          <Route path="/infantil" element={<Kids />} />
+          <Route path="/contato" element={<Contact />} />
+          <Route path="/linkbio" element={<LinkBio />} />
+        </Routes>
+      </main>
     </div>
+  );
+}
+
+// =========================
+// APP principal com <Router> e chamando AppContent
+// =========================
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
