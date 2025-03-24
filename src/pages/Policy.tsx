@@ -13,28 +13,40 @@ function Policy() {
   useEffect(() => {
     const fetchMedia = async () => {
       try {
-        const { data: imageFiles, error: imgError } = await supabase.storage.from('galeria').list('fotos', { limit: 100 });
-        if (imgError) throw imgError;
+        const { data: fotos, error: fotosError } = await supabase.storage.from('galeria').list('fotos', {
+          limit: 100,
+          offset: 0,
+          sortBy: { column: 'name', order: 'asc' },
+        });
 
-        const { data: videoFiles, error: vidError } = await supabase.storage.from('galeria').list('videos', { limit: 100 });
-        if (vidError) throw vidError;
+        const { data: videos, error: videosError } = await supabase.storage.from('galeria').list('videos', {
+          limit: 100,
+          offset: 0,
+          sortBy: { column: 'name', order: 'asc' },
+        });
 
-        console.log('Imagens:', imageFiles);
-        console.log('Vídeos:', videoFiles);
+        if (fotosError || videosError) {
+          console.error('Erro ao listar arquivos:', fotosError || videosError);
+          return;
+        }
 
-        const imageUrls = imageFiles.map(file => ({
-          type: 'image',
-          url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${file.name}`
-        }));
+        const imageUrls = fotos
+          ?.filter(file => file.name && file.metadata === null)
+          .map(file => ({
+            type: 'image',
+            url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${file.name}`,
+          })) ?? [];
 
-        const videoUrls = videoFiles.map(file => ({
-          type: 'video',
-          url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${file.name}`
-        }));
+        const videoUrls = videos
+          ?.filter(file => file.name && file.metadata === null)
+          .map(file => ({
+            type: 'video',
+            url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${file.name}`,
+          })) ?? [];
 
         setMedia([...imageUrls, ...videoUrls]);
       } catch (error) {
-        console.error('Erro ao carregar mídia:', error);
+        console.error('Erro ao carregar mídias:', error);
       }
     };
 
