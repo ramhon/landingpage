@@ -30,9 +30,9 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
   const location = useLocation();
   const navItems = [
     { path: '/', label: 'Inicio' },
-    { path: '/politica', label: 'Politica' },
-    { path: '/videos', label: 'Videos' },
-    { path: '/infantil', label: 'Infantil' },
+//    { path: '/politica', label: 'Politica' },
+//    { path: '/videos', label: 'Videos' },
+//    { path: '/infantil', label: 'Infantil' },
     { path: '/contato', label: 'Contato' },
 //    { path: '/LinkBio', label: 'LinkBio' },
   ];
@@ -75,9 +75,9 @@ function Navigation({ isMenuOpen, setIsMenuOpen }) {
   const location = useLocation();
   const navItems = [
     { path: '/', label: 'Inicio' },
-    { path: '/politica', label: 'Politica' },
-    { path: '/videos', label: 'Videos' },
-    { path: '/infantil', label: 'Infantil' },
+ //   { path: '/politica', label: 'Politica' },
+//    { path: '/videos', label: 'Videos' },
+//    { path: '/infantil', label: 'Infantil' },
     { path: '/contato', label: 'Contato' },
  //   { path: '/LinkBio', label: 'LinkBio' },
   ];
