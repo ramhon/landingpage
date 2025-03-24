@@ -1,69 +1,102 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Play, Mail, Image } from 'lucide-react';
 
-function SobreMim() {
+function LinkBio() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="min-h-screen pt-24 px-6 md:px-12 max-w-5xl mx-auto text-white">
-      <div className="space-y-12">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <img
-            src="https://img.playbook.com/4ZrRFH-9qG13FHxEScVy23U2WwNhwgw1iL-m_MMTjyA/w:750/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9w/cmV2aWV3cy8xNzQ5/YWZmOC00MDBlLTRh/Y2UtYjJkZC1kYzM5/MTczZDU0ZDc.png"
-            alt="Ramhon Peixoto"
-            className="w-64 h-64 object-cover rounded-full shadow-xl"
-          />
-          <div className="space-y-6">
-            <h1 className="text-4xl font-light">
-              Ramhon Peixoto<span className="text-red-500">.</span>
+    <div
+      className="min-h-screen bg-[#121212] flex items-center justify-center px-6 py-20 relative overflow-hidden"
+    >
+      {/* Background image */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('https://img.playbook.com/4ZrRFH-9qG13FHxEScVy23U2WwNhwgw1iL-m_MMTjyA/w:750/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9w/cmV2aWV3cy8xNzQ5/YWZmOC00MDBlLTRh/Y2UtYjJkZC1kYzM5/MTczZDU0ZDc.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.08,
+          filter: 'grayscale(100%)',
+        }}
+      />
+
+      <div
+        className={`max-w-md w-full space-y-12 transition-all duration-1000 z-10 relative ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        {/* Profile Section */}
+        <div className="flex flex-col items-center space-y-6">
+          <div className="relative group">
+            <div className="relative w-40 h-40 rounded-full overflow-hidden border-2 border-white/10">
+              <img
+                src="https://img.playbook.com/BwNWLWlSFfCFzWQ1v5Dgx5ne6T09Cp473qjqD6hmt2c/w:750/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9w/cmV2aWV3cy9iNjdh/ZjEwYy0zMWI5LTQz/YWItOTY0ZC00YzE3/ODQxZmQyY2M.png"
+                alt="Ramhon Profile"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <div className="text-center space-y-2">
+            <h1 className="text-3xl font-light text-white">
+              Ramhon<span className="text-red-500">.</span>
             </h1>
-            <p className="text-white/80 leading-relaxed">
-              Ramhon Peixoto é fotógrafo e videomaker com atuação em Brasília desde 2011. Iniciou sua trajetória no audiovisual como fotógrafo, ampliando sua atuação para vídeo e edição a partir de 2013. Atualmente, trabalha na Câmara dos Deputados como fotógrafo, cinegrafista e editor de vídeo, com vasta experiência em projetos institucionais e eventos sociais.
-            </p>
-            <p className="text-white/80 leading-relaxed">
-              Em seu portfólio, destacam-se produções como trailers de casamento, vídeos institucionais, clipes de debutantes e coberturas de eventos políticos e sociais. Seu objetivo é sempre capturar momentos com um olhar único, transformando cada cena em uma memória inesquecível.
+            <p className="text-sm text-white/60 font-light tracking-wide">
+              Videomaker & Fotógrafo
             </p>
           </div>
         </div>
 
-        <div className="space-y-8">
-          <section className="space-y-4">
-            <h2 className="text-2xl font-light">Estilo e Técnica</h2>
-            <p className="text-white/80 leading-relaxed">
-              Seu estilo fotográfico valoriza a espontaneidade, o detalhe e a emoção. Ramhon busca registrar cada sorriso de forma autêntica, misturando técnicas de reportagem com uma edição cinematográfica. Utiliza câmeras Canon, Sony e Blackmagic, adaptando o equipamento conforme a necessidade do projeto.
-            </p>
-            <p className="text-white/80 leading-relaxed">
-              Além da captação, ele cuida da edição de vídeo, correção de cor e design de som, garantindo que o material final conte uma história visual com ritmo e identidade.
-            </p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-2xl font-light">Projetos Notáveis</h2>
-            <p className="text-white/80 leading-relaxed">
-              Ramhon foi responsável pelo registro de eventos políticos importantes, como a recepção do deputado alemão Peter Beyer pelo PSDB-Mulher. Também atuou em parceria com produtoras como a Omni Vídeo e participou de projetos musicais e religiosos, sempre trazendo profissionalismo e sensibilidade para cada produção.
-            </p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-2xl font-light">Presença Online</h2>
-            <ul className="list-disc list-inside text-white/80 space-y-2">
-              <li>📸 Instagram profissional: <a href="https://instagram.com/ramhonpeixoto" className="text-red-500 underline">@ramhonpeixoto</a></li>
-              <li>🎥 YouTube: <a href="https://youtube.com/@ramhonpeixoto" className="text-red-500 underline">Ramhon Peixoto</a></li>
-              <li>📘 Facebook: <a href="https://facebook.com/ramhonfotografia" className="text-red-500 underline">Ramhon Fotografia</a></li>
-              <li>🔗 LinkedIn: <a href="https://br.linkedin.com/in/ramhonpeixoto" className="text-red-500 underline">/in/ramhonpeixoto</a></li>
-              <li>🌐 Site: <a href="https://ramhon.com.br" className="text-red-500 underline">ramhon.com.br</a></li>
-            </ul>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-2xl font-light">Contato</h2>
-            <p className="text-white/80 leading-relaxed">
-              Para agendar um ensaio, cobertura de evento ou produção de vídeo com Ramhon Peixoto, entre em contato pelo site ou envie um e-mail para:
-            </p>
-            <p className="text-white font-medium">📧 contato@ramhon.com.br</p>
-            <p className="text-white/70 text-sm">CNPJ 50.894.832/0001-77</p>
-          </section>
+        {/* Links Section */}
+        <div className="space-y-4">
+          {[
+            {
+              to: '/',
+              label: 'Site',
+              icon: Play,
+              delay: '100ms',
+            },
+            {
+              to: '/contato',
+              label: 'Contato',
+              icon: Mail,
+              delay: '200ms',
+            },
+            {
+              to: 'https://api.whatsapp.com/send/?phone=5561983832325&text=Oii+Ramhon+Peixoto%2C+vim+atrav%C3%A9s+do+seu+site%21&type=phone_number&app_absent=0',
+              label: 'Whatsapp',
+              icon: Image,
+              delay: '300ms',
+            },
+          ].map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className="group relative block w-full"
+              style={{ transitionDelay: link.delay }}
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-white/10 to-white/5 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative flex items-center justify-between px-6 py-4 bg-white/5 rounded-xl border border-white/10 group-hover:border-white/20 transition duration-300">
+                <span className="text-white/80 group-hover:text-white transition-colors">
+                  {link.label}
+                </span>
+                <link.icon
+                  size={20}
+                  className="text-white/60 group-hover:text-white transition-colors"
+                />
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-export default SobreMim;
+export default LinkBio;
