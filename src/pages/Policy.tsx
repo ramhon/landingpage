@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const supabaseUrl = 'https://ezwzjnvasgpzsjgwjesq.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz...'; // mantenha sua chave completa aqui
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d3pqbnZhc2dwenNqZ3dqZXNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjM2MjcsImV4cCI6MjA1ODM5OTYyN30.cSWLb7taf4D6fepe2oKk5oZsNYehoclmerDllQ1P5xw';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Policy() {
@@ -12,23 +12,30 @@ function Policy() {
 
   useEffect(() => {
     const fetchMedia = async () => {
-      const { data: images, error: imgError } = await supabase.storage.from('galeria').list('fotos', { limit: 100 });
-      const { data: videos, error: vidError } = await supabase.storage.from('galeria').list('videos', { limit: 100 });
+      try {
+        const { data: imageFiles, error: imgError } = await supabase.storage.from('galeria').list('fotos', { limit: 100 });
+        if (imgError) throw imgError;
 
-      if (imgError) console.error('Erro ao buscar imagens:', imgError);
-      if (vidError) console.error('Erro ao buscar vídeos:', vidError);
+        const { data: videoFiles, error: vidError } = await supabase.storage.from('galeria').list('videos', { limit: 100 });
+        if (vidError) throw vidError;
 
-      const imageUrls = images?.map((item) => ({
-        type: 'image',
-        url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${item.name}`,
-      })) || [];
+        console.log('Imagens:', imageFiles);
+        console.log('Vídeos:', videoFiles);
 
-      const videoUrls = videos?.map((item) => ({
-        type: 'video',
-        url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${item.name}`,
-      })) || [];
+        const imageUrls = imageFiles.map(file => ({
+          type: 'image',
+          url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${file.name}`
+        }));
 
-      setMedia([...imageUrls, ...videoUrls]);
+        const videoUrls = videoFiles.map(file => ({
+          type: 'video',
+          url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${file.name}`
+        }));
+
+        setMedia([...imageUrls, ...videoUrls]);
+      } catch (error) {
+        console.error('Erro ao carregar mídia:', error);
+      }
     };
 
     fetchMedia();
@@ -42,7 +49,6 @@ function Policy() {
   return (
     <div className="min-h-screen bg-[#121212] px-6 py-24 text-white">
       <h1 className="text-4xl font-light mb-12">Galeria<span className="text-red-500">.</span></h1>
-
       {media.length === 0 ? (
         <p className="text-white/60 text-center text-sm mb-12">
           Nenhuma mídia encontrada. Verifique o Supabase ou as permissões.
@@ -76,12 +82,20 @@ function Policy() {
 
       {currentIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
-          <button className="absolute top-6 right-6 text-white" onClick={closeModal}>
+          <button
+            className="absolute top-6 right-6 text-white"
+            onClick={closeModal}
+          >
             <X size={32} />
           </button>
-          <button className="absolute left-6 text-white" onClick={prevItem}>
+
+          <button
+            className="absolute left-6 text-white"
+            onClick={prevItem}
+          >
             <ChevronLeft size={32} />
           </button>
+
           <div className="max-w-4xl w-full px-4">
             {media[currentIndex].type === 'image' ? (
               <img
@@ -98,7 +112,11 @@ function Policy() {
               />
             )}
           </div>
-          <button className="absolute right-6 text-white" onClick={nextItem}>
+
+          <button
+            className="absolute right-6 text-white"
+            onClick={nextItem}
+          >
             <ChevronRight size={32} />
           </button>
         </div>
