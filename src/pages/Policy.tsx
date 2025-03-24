@@ -12,8 +12,11 @@ function Policy() {
 
   useEffect(() => {
     const fetchMedia = async () => {
-      const { data: images } = await supabase.storage.from('galeria').list('fotos', { limit: 100 });
-      const { data: videos } = await supabase.storage.from('galeria').list('videos', { limit: 100 });
+      const { data: images, error: imgError } = await supabase.storage.from('galeria').list('fotos', { limit: 100 });
+      const { data: videos, error: vidError } = await supabase.storage.from('galeria').list('videos', { limit: 100 });
+
+      if (imgError) console.error('Erro ao buscar imagens:', imgError);
+      if (vidError) console.error('Erro ao buscar vídeos:', vidError);
 
       const imageUrls = images?.map((item) => ({
         type: 'image',
