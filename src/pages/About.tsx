@@ -1,56 +1,64 @@
 import React from 'react';
 
-function About() {
+function SobreMim() {
   return (
-    <div className="min-h-screen pt-24 px-6 md:px-12 max-w-4xl mx-auto">
+    <div className="min-h-screen pt-24 px-6 md:px-12 max-w-5xl mx-auto text-white">
       <div className="space-y-12">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400"
-            alt="Profile"
-            className="w-64 h-64 object-cover rounded-lg shadow-xl"
+            src="https://ramhon.com.br/imagens/perfil.jpg"
+            alt="Ramhon Peixoto"
+            className="w-64 h-64 object-cover rounded-full shadow-xl"
           />
           <div className="space-y-6">
             <h1 className="text-4xl font-light">
-              Sobre Nós<span className="text-red-500">.</span>
+              Ramhon Peixoto<span className="text-red-500">.</span>
             </h1>
             <p className="text-white/80 leading-relaxed">
-              Somos uma equipe dedicada à <span className="text-red-500">inovação</span> e 
-              <span className="text-red-500"> excelência</span> em design e desenvolvimento. 
-              Nossa missão é criar experiências digitais únicas que inspiram e transformam.
-              Com mais de uma década de experiência, nos especializamos em 
-              <span className="text-red-500"> soluções criativas</span> que atendem às 
-              necessidades específicas de cada cliente.
+              Ramhon Peixoto é fotógrafo e videomaker com atuação em Brasília desde 2011. Iniciou sua trajetória no audiovisual como fotógrafo, ampliando sua atuação para vídeo e edição a partir de 2013. Atualmente, trabalha na Câmara dos Deputados como fotógrafo, cinegrafista e editor de vídeo, com vasta experiência em projetos institucionais e eventos sociais.
+            </p>
+            <p className="text-white/80 leading-relaxed">
+              Em seu portfólio, destacam-se produções como trailers de casamento, vídeos institucionais, clipes de debutantes e coberturas de eventos políticos e sociais. Seu objetivo é sempre capturar momentos com um olhar único, transformando cada cena em uma memória inesquecível.
             </p>
           </div>
         </div>
 
         <div className="space-y-8">
           <section className="space-y-4">
-            <h2 className="text-2xl font-light">Nossa Missão</h2>
+            <h2 className="text-2xl font-light">Estilo e Técnica</h2>
             <p className="text-white/80 leading-relaxed">
-              Buscamos constantemente a excelência em cada projeto, combinando 
-              criatividade com tecnologia de ponta para entregar resultados 
-              excepcionais que superam as expectativas dos nossos clientes.
+              Seu estilo fotográfico valoriza a espontaneidade, o detalhe e a emoção. Ramhon busca registrar cada sorriso de forma autêntica, misturando técnicas de reportagem com uma edição cinematográfica. Utiliza câmeras Canon, Sony e Blackmagic, adaptando o equipamento conforme a necessidade do projeto.
+            </p>
+            <p className="text-white/80 leading-relaxed">
+              Além da captação, ele cuida da edição de vídeo, correção de cor e design de som, garantindo que o material final conte uma história visual com ritmo e identidade.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-light">Nossos Valores</h2>
-            <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <li className="bg-white/5 p-6 rounded-lg">
-                <h3 className="text-xl mb-2">Inovação</h3>
-                <p className="text-white/70">Buscamos sempre as soluções mais criativas e eficientes.</p>
-              </li>
-              <li className="bg-white/5 p-6 rounded-lg">
-                <h3 className="text-xl mb-2">Qualidade</h3>
-                <p className="text-white/70">Comprometimento com a excelência em cada detalhe.</p>
-              </li>
-              <li className="bg-white/5 p-6 rounded-lg">
-                <h3 className="text-xl mb-2">Transparência</h3>
-                <p className="text-white/70">Comunicação clara e honesta em todas as interações.</p>
-              </li>
+            <h2 className="text-2xl font-light">Projetos Notáveis</h2>
+            <p className="text-white/80 leading-relaxed">
+              Ramhon foi responsável pelo registro de eventos políticos importantes, como a recepção do deputado alemão Peter Beyer pelo PSDB-Mulher. Também atuou em parceria com produtoras como a Omni Vídeo e participou de projetos musicais e religiosos, sempre trazendo profissionalismo e sensibilidade para cada produção.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-light">Presença Online</h2>
+            <ul className="list-disc list-inside text-white/80 space-y-2">
+              <li>📸 Instagram profissional: <a href="https://instagram.com/ramhonpeixoto" className="text-red-500 underline">@ramhonpeixoto</a></li>
+              <li>🎥 YouTube: <a href="https://youtube.com/@ramhonpeixoto" className="text-red-500 underline">Ramhon Peixoto</a></li>
+              <li>📘 Facebook: <a href="https://facebook.com/ramhonfotografia" className="text-red-500 underline">Ramhon Fotografia</a></li>
+              <li>🔗 LinkedIn: <a href="https://br.linkedin.com/in/ramhonpeixoto" className="text-red-500 underline">/in/ramhonpeixoto</a></li>
+              <li>🌐 Site: <a href="https://ramhon.com.br" className="text-red-500 underline">ramhon.com.br</a></li>
             </ul>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-light">Contato</h2>
+            <p className="text-white/80 leading-relaxed">
+              Para agendar um ensaio, cobertura de evento ou produção de vídeo com Ramhon Peixoto, entre em contato pelo site ou envie um e-mail para:
+            </p>
+            <p className="text-white font-medium">📧 contato@ramhon.com.br</p>
+            <p className="text-white/70 text-sm">CNPJ 50.894.832/0001-77</p>
           </section>
         </div>
       </div>
@@ -58,4 +66,4 @@ function About() {
   );
 }
 
-export default About;
+export default SobreMim;
