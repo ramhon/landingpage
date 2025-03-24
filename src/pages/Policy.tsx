@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const supabaseUrl = 'https://ezwzjnvasgpzsjgwjesq.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d3pqbnZhc2dwenNqZ3dqZXNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjM2MjcsImV4cCI6MjA1ODM5OTYyN30.cSWLb7taf4D6fepe2oKk5oZsNYehoclmerDllQ1P5xw';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz...'; // mantenha sua chave completa aqui
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Policy() {
@@ -17,9 +17,6 @@ function Policy() {
 
       if (imgError) console.error('Erro ao buscar imagens:', imgError);
       if (vidError) console.error('Erro ao buscar vídeos:', vidError);
-
-      console.log('Imagens encontradas:', images);
-      console.log('Vídeos encontrados:', videos);
 
       const imageUrls = images?.map((item) => ({
         type: 'image',
@@ -45,70 +42,46 @@ function Policy() {
   return (
     <div className="min-h-screen bg-[#121212] px-6 py-24 text-white">
       <h1 className="text-4xl font-light mb-12">Galeria<span className="text-red-500">.</span></h1>
+
       {media.length === 0 ? (
-  <p className="text-white/60 text-center text-sm mb-12">
-    Nenhuma mídia encontrada. Verifique o Supabase ou as permissões.
-  </p>
-) : (
-  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-    {media.map((item, idx) => (
-      <div
-        key={idx}
-        className="cursor-pointer group relative overflow-hidden"
-        onClick={() => openModal(idx)}
-      >
-        {item.type === 'image' ? (
-          <img
-            src={item.url}
-            alt="galeria"
-            className="w-full h-48 object-cover rounded-md group-hover:scale-105 transition-transform"
-          />
-        ) : (
-          <video
-            src={item.url}
-            className="w-full h-48 object-cover rounded-md"
-            muted
-            playsInline
-          />
-        )}
-      </div>
-    ))}
-  </div>
-)}
-            {item.type === 'image' ? (
-              <img
-                src={item.url}
-                alt="galeria"
-                className="w-full h-48 object-cover rounded-md group-hover:scale-105 transition-transform"
-              />
-            ) : (
-              <video
-                src={item.url}
-                className="w-full h-48 object-cover rounded-md"
-                muted
-                playsInline
-              />
-            )}
-          </div>
-        ))}
-      </div>
+        <p className="text-white/60 text-center text-sm mb-12">
+          Nenhuma mídia encontrada. Verifique o Supabase ou as permissões.
+        </p>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {media.map((item, idx) => (
+            <div
+              key={idx}
+              className="cursor-pointer group relative overflow-hidden"
+              onClick={() => openModal(idx)}
+            >
+              {item.type === 'image' ? (
+                <img
+                  src={item.url}
+                  alt="galeria"
+                  className="w-full h-48 object-cover rounded-md group-hover:scale-105 transition-transform"
+                />
+              ) : (
+                <video
+                  src={item.url}
+                  className="w-full h-48 object-cover rounded-md"
+                  muted
+                  playsInline
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
 
       {currentIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
-          <button
-            className="absolute top-6 right-6 text-white"
-            onClick={closeModal}
-          >
+          <button className="absolute top-6 right-6 text-white" onClick={closeModal}>
             <X size={32} />
           </button>
-
-          <button
-            className="absolute left-6 text-white"
-            onClick={prevItem}
-          >
+          <button className="absolute left-6 text-white" onClick={prevItem}>
             <ChevronLeft size={32} />
           </button>
-
           <div className="max-w-4xl w-full px-4">
             {media[currentIndex].type === 'image' ? (
               <img
@@ -125,11 +98,7 @@ function Policy() {
               />
             )}
           </div>
-
-          <button
-            className="absolute right-6 text-white"
-            onClick={nextItem}
-          >
+          <button className="absolute right-6 text-white" onClick={nextItem}>
             <ChevronRight size={32} />
           </button>
         </div>
