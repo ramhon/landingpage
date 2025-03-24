@@ -25,24 +25,25 @@ function Policy() {
           sortBy: { column: 'name', order: 'asc' },
         });
 
+        console.log('📸 Fotos recebidas:', fotos);
+        console.log('🎥 Vídeos recebidos:', videos);
+        console.log('🛑 Erro fotos:', fotosError);
+        console.log('🛑 Erro vídeos:', videosError);
+
         if (fotosError || videosError) {
           console.error('Erro ao listar arquivos:', fotosError || videosError);
           return;
         }
 
-        const imageUrls = fotos
-          ?.filter(file => file.name && file.metadata === null)
-          .map(file => ({
-            type: 'image',
-            url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${file.name}`,
-          })) ?? [];
+        const imageUrls = fotos?.map(file => ({
+          type: 'image',
+          url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${file.name}`,
+        })) ?? [];
 
-        const videoUrls = videos
-          ?.filter(file => file.name && file.metadata === null)
-          .map(file => ({
-            type: 'video',
-            url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${file.name}`,
-          })) ?? [];
+        const videoUrls = videos?.map(file => ({
+          type: 'video',
+          url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${file.name}`,
+        })) ?? [];
 
         setMedia([...imageUrls, ...videoUrls]);
       } catch (error) {
