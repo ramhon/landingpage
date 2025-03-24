@@ -18,6 +18,9 @@ function Policy() {
       if (imgError) console.error('Erro ao buscar imagens:', imgError);
       if (vidError) console.error('Erro ao buscar vídeos:', vidError);
 
+      console.log('Imagens encontradas:', images);
+      console.log('Vídeos encontrados:', videos);
+
       const imageUrls = images?.map((item) => ({
         type: 'image',
         url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${item.name}`,
