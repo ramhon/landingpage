@@ -45,13 +45,36 @@ function Policy() {
   return (
     <div className="min-h-screen bg-[#121212] px-6 py-24 text-white">
       <h1 className="text-4xl font-light mb-12">Galeria<span className="text-red-500">.</span></h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {media.map((item, idx) => (
-          <div
-            key={idx}
-            className="cursor-pointer group relative overflow-hidden"
-            onClick={() => openModal(idx)}
-          >
+      {media.length === 0 ? (
+  <p className="text-white/60 text-center text-sm mb-12">
+    Nenhuma mídia encontrada. Verifique o Supabase ou as permissões.
+  </p>
+) : (
+  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    {media.map((item, idx) => (
+      <div
+        key={idx}
+        className="cursor-pointer group relative overflow-hidden"
+        onClick={() => openModal(idx)}
+      >
+        {item.type === 'image' ? (
+          <img
+            src={item.url}
+            alt="galeria"
+            className="w-full h-48 object-cover rounded-md group-hover:scale-105 transition-transform"
+          />
+        ) : (
+          <video
+            src={item.url}
+            className="w-full h-48 object-cover rounded-md"
+            muted
+            playsInline
+          />
+        )}
+      </div>
+    ))}
+  </div>
+)}
             {item.type === 'image' ? (
               <img
                 src={item.url}
