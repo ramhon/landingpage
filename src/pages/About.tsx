@@ -6,7 +6,7 @@ function SobreMim() {
       <div className="space-y-12">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <img
-            src="https://ramhon.com.br/imagens/perfil.jpg"
+            src="https://img.playbook.com/4ZrRFH-9qG13FHxEScVy23U2WwNhwgw1iL-m_MMTjyA/w:750/Z3M6Ly9icmFuZGlm/eS11c2VyY29udGVu/dC1kZXYvcHJvZC9w/cmV2aWV3cy8xNzQ5/YWZmOC00MDBlLTRh/Y2UtYjJkZC1kYzM5/MTczZDU0ZDc.png"
             alt="Ramhon Peixoto"
             className="w-64 h-64 object-cover rounded-full shadow-xl"
           />
