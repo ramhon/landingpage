@@ -1,117 +1,110 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const supabaseUrl = 'https://ezwzjnvasgpzsjgwjesq.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d3pqbnZhc2dwenNqZ3dqZXNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjM2MjcsImV4cCI6MjA1ODM5OTYyN30.cSWLb7taf4D6fepe2oKk5oZsNYehoclmerDllQ1P5xw';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Policy() {
+  const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
-  const startX = useRef(null);
-
-  const images = [
-    "https://images.unsplash.com/photo-1558980664-10ea72d4c5f8",
-    "https://images.unsplash.com/photo-1602526218853-b3c5cb43e2a6",
-    "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d",
-    "https://images.unsplash.com/photo-1589712235273-5b92e8b84847",
-    "https://images.unsplash.com/photo-1549921296-3a6bfb7a9f32",
-    "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e",
-    "https://images.unsplash.com/photo-1481277542470-605612bd2d61",
-    "https://images.unsplash.com/photo-1530023367847-a683933f417d",
-    "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
-    "https://images.unsplash.com/photo-1579546929518-9e396f3cc809"
-  ];
-
-  const showModal = currentIndex !== null;
-
-  const goPrev = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-  };
-
-  const goNext = () => {
-    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
-  };
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!showModal) return;
-      if (e.key === 'ArrowLeft') goPrev();
-      if (e.key === 'ArrowRight') goNext();
-      if (e.key === 'Escape') setCurrentIndex(null);
+    const fetchMedia = async () => {
+      const { data: images } = await supabase.storage.from('galeria').list('fotos', { limit: 100 });
+      const { data: videos } = await supabase.storage.from('galeria').list('videos', { limit: 100 });
+
+      const imageUrls = images?.map((item) => ({
+        type: 'image',
+        url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${item.name}`,
+      })) || [];
+
+      const videoUrls = videos?.map((item) => ({
+        type: 'video',
+        url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${item.name}`,
+      })) || [];
+
+      setMedia([...imageUrls, ...videoUrls]);
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [showModal]);
 
-  const handleTouchStart = (e) => {
-    startX.current = e.touches[0].clientX;
-  };
+    fetchMedia();
+  }, []);
 
-  const handleTouchEnd = (e) => {
-    const endX = e.changedTouches[0].clientX;
-    if (startX.current - endX > 50) goNext();
-    if (endX - startX.current > 50) goPrev();
-  };
+  const openModal = (index) => setCurrentIndex(index);
+  const closeModal = () => setCurrentIndex(null);
+  const prevItem = () => setCurrentIndex((i) => (i > 0 ? i - 1 : media.length - 1));
+  const nextItem = () => setCurrentIndex((i) => (i < media.length - 1 ? i + 1 : 0));
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white pt-20 px-6 pb-12">
-      <h1 className="text-3xl md:text-5xl font-light mb-10 text-center">
-        Galeria de Política<span className="text-red-500">.</span>
-      </h1>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {images.map((src, index) => (
-          <div key={index} className="overflow-hidden rounded-lg shadow-md cursor-pointer" onClick={() => setCurrentIndex(index)}>
-            <img
-              src={`${src}?auto=format&fit=crop&w=800&q=80`}
-              alt={`Imagem ${index + 1}`}
-              className="w-full h-48 object-cover transition-transform duration-300 ease-out hover:scale-105 hover:brightness-110"
-            />
+    <div className="min-h-screen bg-[#121212] px-6 py-24 text-white">
+      <h1 className="text-4xl font-light mb-12">Galeria<span className="text-red-500">.</span></h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {media.map((item, idx) => (
+          <div
+            key={idx}
+            className="cursor-pointer group relative overflow-hidden"
+            onClick={() => openModal(idx)}
+          >
+            {item.type === 'image' ? (
+              <img
+                src={item.url}
+                alt="galeria"
+                className="w-full h-48 object-cover rounded-md group-hover:scale-105 transition-transform"
+              />
+            ) : (
+              <video
+                src={item.url}
+                className="w-full h-48 object-cover rounded-md"
+                muted
+                playsInline
+              />
+            )}
           </div>
         ))}
       </div>
 
-      {/* Modal com navegação e zoom suave */}
-      {showModal && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div className="relative max-w-5xl w-full p-4 animate-zoomFade">
-            <button
-              onClick={() => setCurrentIndex(null)}
-              className="absolute top-4 right-4 text-white text-2xl z-50"
-            >
-              &times;
-            </button>
-            <button
-              onClick={goPrev}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl z-50"
-            >
-              ❮
-            </button>
-            <button
-              onClick={goNext}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl z-50"
-            >
-              ❯
-            </button>
-            <img
-              src={`${images[currentIndex]}?auto=format&fit=contain&w=1200&q=90`}
-              alt="Imagem ampliada"
-              className="w-full max-h-[90vh] object-contain rounded-lg shadow-lg transition-transform duration-500 scale-100"
-            />
+      {currentIndex !== null && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+          <button
+            className="absolute top-6 right-6 text-white"
+            onClick={closeModal}
+          >
+            <X size={32} />
+          </button>
+
+          <button
+            className="absolute left-6 text-white"
+            onClick={prevItem}
+          >
+            <ChevronLeft size={32} />
+          </button>
+
+          <div className="max-w-4xl w-full px-4">
+            {media[currentIndex].type === 'image' ? (
+              <img
+                src={media[currentIndex].url}
+                className="w-full max-h-[80vh] object-contain animate-fade-in"
+                alt="media"
+              />
+            ) : (
+              <video
+                src={media[currentIndex].url}
+                controls
+                autoPlay
+                className="w-full max-h-[80vh] object-contain animate-fade-in"
+              />
+            )}
           </div>
+
+          <button
+            className="absolute right-6 text-white"
+            onClick={nextItem}
+          >
+            <ChevronRight size={32} />
+          </button>
         </div>
       )}
-
-      <style>
-        {`
-          .animate-zoomFade {
-            animation: zoomFade 0.6s ease-out forwards;
-          }
-          @keyframes zoomFade {
-            0% { opacity: 0; transform: scale(1.1); }
-            100% { opacity: 1; transform: scale(1); }
-          }
-        `}
-      </style>
     </div>
   );
 }
