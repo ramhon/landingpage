@@ -58,7 +58,7 @@ function SobreMim() {
               Para agendar um ensaio, cobertura de evento ou produção de vídeo com Ramhon Peixoto, entre em contato pelo site ou envie um e-mail para:
             </p>
             <p className="text-white font-medium">📧 contato@ramhon.com.br</p>
-    //      /*  <p className="text-white/70 text-sm">CNPJ 50.894.832/0001-77</p> */
+    
           </section>
         </div>
       </div>
