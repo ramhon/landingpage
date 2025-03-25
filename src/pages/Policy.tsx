@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -9,50 +9,53 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 function Policy() {
   const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const loader = useRef(null);
+
+  const fetchMedia = useCallback(async () => {
+    const pageSize = 12;
+    const offset = page * pageSize;
+
+    const { data: fotos, error } = await supabase.storage.from('galeria').list('fotos/politica', {
+      limit: pageSize,
+      offset,
+      sortBy: { column: 'name', order: 'asc' },
+    });
+
+    if (error) {
+      console.error('Erro ao buscar imagens:', error);
+      setHasMore(false);
+      return;
+    }
+
+    if (fotos.length === 0) {
+      setHasMore(false);
+      return;
+    }
+
+    const imageUrls = fotos.map(file => ({
+      type: 'image',
+      url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/politica/${file.name}`,
+    }));
+
+    setMedia(prev => [...prev, ...imageUrls]);
+  }, [page]);
 
   useEffect(() => {
-    const fetchMedia = async () => {
-      try {
-        const { data: fotos, error: fotosError } = await supabase.storage.from('galeria').list('fotos', {
-          limit: 100,
-          offset: 0,
-          sortBy: { column: 'name', order: 'asc' },
-        });
-
-        const { data: videos, error: videosError } = await supabase.storage.from('galeria').list('videos', {
-          limit: 100,
-          offset: 0,
-          sortBy: { column: 'name', order: 'asc' },
-        });
-
-        console.log('📸 Fotos recebidas:', fotos);
-        console.log('🎥 Vídeos recebidos:', videos);
-        console.log('🛑 Erro fotos:', fotosError);
-        console.log('🛑 Erro vídeos:', videosError);
-
-        if (fotosError || videosError) {
-          console.error('Erro ao listar arquivos:', fotosError || videosError);
-          return;
-        }
-
-        const imageUrls = fotos?.map(file => ({
-          type: 'image',
-          url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/${file.name}`,
-        })) ?? [];
-
-        const videoUrls = videos?.map(file => ({
-          type: 'video',
-          url: `${supabaseUrl}/storage/v1/object/public/galeria/videos/${file.name}`,
-        })) ?? [];
-
-        setMedia([...imageUrls, ...videoUrls]);
-      } catch (error) {
-        console.error('Erro ao carregar mídias:', error);
-      }
-    };
-
     fetchMedia();
-  }, []);
+  }, [fetchMedia]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage(prev => prev + 1);
+      }
+    }, { threshold: 1 });
+
+    if (loader.current) observer.observe(loader.current);
+    return () => loader.current && observer.unobserve(loader.current);
+  }, [hasMore]);
 
   const openModal = (index) => setCurrentIndex(index);
   const closeModal = () => setCurrentIndex(null);
@@ -74,63 +77,37 @@ function Policy() {
               className="cursor-pointer group relative overflow-hidden"
               onClick={() => openModal(idx)}
             >
-              {item.type === 'image' ? (
-                <img
-                  src={item.url}
-                  alt="galeria"
-                  className="w-full aspect-square object-cover rounded-md scale-90 opacity-0 group-hover:scale-105 transition-transform duration-700 ease-out animate-fade-in"
-                  style={{ animation: 'zoomIn 0.8s forwards' }}
-                />
-              ) : (
-                <video
-                  src={item.url}
-                  className="w-full aspect-square object-cover rounded-md"
-                  muted
-                  playsInline
-                />
-              )}
+              <img
+                src={item.url}
+                alt="galeria"
+                className="w-full aspect-square object-cover rounded-md scale-90 opacity-0 group-hover:scale-105 transition-transform duration-700 ease-out animate-fade-in"
+                style={{ animation: 'zoomIn 0.8s forwards' }}
+              />
             </div>
           ))}
         </div>
       )}
 
+      <div ref={loader} className="py-10 text-center text-white/50">
+        {hasMore ? 'Carregando mais...' : 'Todas as imagens foram carregadas.'}
+      </div>
+
       {currentIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
-          <button
-            className="absolute top-6 right-6 text-white"
-            onClick={closeModal}
-          >
+          <button className="absolute top-6 right-6 text-white" onClick={closeModal}>
             <X size={32} />
           </button>
-
-          <button
-            className="absolute left-6 text-white"
-            onClick={prevItem}
-          >
+          <button className="absolute left-6 text-white" onClick={prevItem}>
             <ChevronLeft size={32} />
           </button>
-
           <div className="max-w-4xl w-full px-4">
-            {media[currentIndex].type === 'image' ? (
-              <img
-                src={media[currentIndex].url}
-                className="w-full max-h-[80vh] object-contain animate-fade-in"
-                alt="media"
-              />
-            ) : (
-              <video
-                src={media[currentIndex].url}
-                controls
-                autoPlay
-                className="w-full max-h-[80vh] object-contain animate-fade-in"
-              />
-            )}
+            <img
+              src={media[currentIndex].url}
+              className="w-full max-h-[80vh] object-contain animate-fade-in"
+              alt="media"
+            />
           </div>
-
-          <button
-            className="absolute right-6 text-white"
-            onClick={nextItem}
-          >
+          <button className="absolute right-6 text-white" onClick={nextItem}>
             <ChevronRight size={32} />
           </button>
         </div>
