@@ -58,12 +58,18 @@ function Policy() {
     return () => loader.current && observer.unobserve(loader.current);
   }, [hasMore]);
 
-  const openModal = (index) => setCurrentIndex(index);
-  const closeModal = () => setCurrentIndex(null);
+  const openModal = (index) => {
+    setCurrentIndex(index);
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) elem.requestFullscreen();
+  };
+  const closeModal = () => {
+    setCurrentIndex(null);
+    if (document.fullscreenElement) document.exitFullscreen();
+  };
   const prevItem = () => setCurrentIndex((i) => (i > 0 ? i - 1 : media.length - 1));
   const nextItem = () => setCurrentIndex((i) => (i < media.length - 1 ? i + 1 : 0));
 
-  // Navegação por teclado e toque
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (currentIndex !== null) {
