@@ -52,14 +52,14 @@ function SobreMim() {
             </ul>
           </section> */}
 
-          <section className="space-y-4">
+        {/*  <section className="space-y-4">
             <h2 className="text-2xl font-light">Contato</h2>
             <p className="text-white/80 leading-relaxed">
               Para agendar um ensaio, cobertura de evento ou produção de vídeo com Ramhon Peixoto, entre em contato pelo site ou envie um e-mail para:
             </p>
             <p className="text-white font-medium">📧 contato@ramhon.com.br</p>
     
-          </section>
+          </section>*/
         </div>
       </div>
     </div>
