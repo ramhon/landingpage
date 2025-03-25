@@ -83,6 +83,18 @@ function Contact() {
             </div>
 
             <div>
+              <label htmlFor="phone" className="block text-sm mb-2">Telefone</label>
+              <input
+                type="tel"
+                name="phone"
+                required
+                pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
+                title="Formato esperado: (61) 91234-5678"
+                className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white focus:outline-none focus:border-red-500"
+              />
+            </div>
+
+            <div>
               <label htmlFor="message" className="block text-sm mb-2">Mensagem</label>
               <textarea
                 name="message"
