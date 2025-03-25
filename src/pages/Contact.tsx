@@ -8,7 +8,6 @@ function Contact() {
 
   return (
     <div className="relative w-full min-h-screen pt-24 px-6 md:px-12">
-      {/* Imagem de fundo */}
       <div
         className="absolute inset-0 z-0 opacity-60"
         style={{
@@ -28,7 +27,6 @@ function Contact() {
         </h1>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Informações */}
           <div className="space-y-8">
             <div className="space-y-4 text-white/90">
               <div className="flex items-center space-x-3">
@@ -45,18 +43,6 @@ function Contact() {
               </div>
             </div>
 
-            <div>
-            {/*  <h2 className="text-xl font-light mb-4">Redes Sociais</h2>
-              <div className="flex space-x-4">
-                <a href="https://www.instagram.com/ramhon" target="_blank" className="text-white/70 hover:text-white">
-                  <Instagram size={24} />
-                </a>
-                <a href="https://wa.me/5561983832325" target="_blank" className="text-white/70 hover:text-white"> 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.54 2 2.07 6.48 2.04 11.98c-.01 2.1.55 4.13 1.6 5.91L2 22l4.25-1.55a10.05 10.05 0 005.78 1.75h.01c5.5 0 9.97-4.48 9.99-9.97.01-2.66-1.03-5.17-2.9-7.06A9.95 9.95 0 0012.04 2zm-.01 18c-1.69 0-3.35-.47-4.78-1.36l-.34-.2-2.52.91.86-2.45-.22-.36a8.04 8.04 0 01-1.26-4.32c.02-4.43 3.63-8.04 8.07-8.04a8.05 8.05 0 015.69 2.35 7.96 7.96 0 012.34 5.66c-.02 4.44-3.63 8.03-8.08 8.03zm4.45-6.2c-.24-.12-1.41-.7-1.63-.78-.22-.08-.38-.12-.54.12s-.62.78-.76.94c-.14.16-.28.18-.52.06a6.53 6.53 0 01-1.9-1.17 7.1 7.1 0 01-1.31-1.62c-.14-.24-.01-.37.11-.49.12-.12.26-.3.39-.44.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.28-.74-1.75-.2-.48-.4-.41-.55-.42l-.47-.01a.9.9 0 00-.65.3c-.22.24-.86.84-.86 2.04s.88 2.36 1 2.52c.12.16 1.74 2.66 4.2 3.73.59.26 1.05.42 1.41.54.59.19 1.13.16 1.56.1.47-.07 1.41-.58 1.61-1.14.2-.55.2-1.02.14-1.14-.06-.12-.22-.18-.46-.3z"/></svg>
-                </a>
-              </div>*/}
-            </div>
-
             <a
               href="https://wa.me/5561983832325"
               target="_blank"
@@ -69,13 +55,12 @@ function Contact() {
 
           {/* Formulário com FormSubmit */}
           <form
-            action="https://formsubmit.co/contato@ramhon.com.br/contato"
+            action="https://formsubmit.co/contato@ramhon.com.br"
             method="POST"
             className="space-y-6"
           >
-            {/* ocultar captchas e redirecionamento */}
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="/contato" />
+            <input type="hidden" name="_next" value="https://ramhon.com.br/obrigado" />
 
             <div>
               <label htmlFor="name" className="block text-sm mb-2">Nome</label>
