@@ -30,6 +30,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
   const location = useLocation();
   const navItems = [
     { path: '/', label: 'Inicio' },
+    { path: '/sobre', label: 'Sobre' },
     { path: '/politica', label: 'Politica' },
 //    { path: '/videos', label: 'Videos' },
 //    { path: '/infantil', label: 'Infantil' },
@@ -75,6 +76,7 @@ function Navigation({ isMenuOpen, setIsMenuOpen }) {
   const location = useLocation();
   const navItems = [
     { path: '/', label: 'Inicio' },
+    { path: '/sobre', label: 'Sobre' },
     { path: '/politica', label: 'Politica' },
 //    { path: '/videos', label: 'Videos' },
 //    { path: '/infantil', label: 'Infantil' },
