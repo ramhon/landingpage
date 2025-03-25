@@ -59,7 +59,7 @@ function SobreMim() {
             </p>
             <p className="text-white font-medium">📧 contato@ramhon.com.br</p>
     
-          </section>*/
+          </section>*/}
         </div>
       </div>
     </div>
