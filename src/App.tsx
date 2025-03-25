@@ -22,6 +22,7 @@ import Videos from './pages/Videos';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import LinkBio from './pages/LinkBio';
+import Obrigado from './pages/Obrigado';
 
 // =========================
 // Header e Navigation
@@ -155,6 +156,7 @@ function AppContent() {
           <Route path="/infantil" element={<Kids />} />
           <Route path="/contato" element={<Contact />} />
         <Route path="/linkbio" element={<LinkBio />} />
+          <Route path="/obrigado" element={<Obrigado />} />
         </Routes>
       </main>
     </div>
