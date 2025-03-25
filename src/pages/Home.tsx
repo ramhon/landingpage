@@ -82,17 +82,17 @@ function Home() {
       </div>
 
       {isVideoOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
-          <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center">
+          <div className="relative w-full h-full flex items-center justify-center">
             <button
               onClick={() => setIsVideoOpen(false)}
-              className="absolute top-2 right-2 text-white text-2xl"
+              className="absolute top-4 right-4 text-white z-50"
             >
-              <X size={24} />
+              <X size={32} />
             </button>
             {videoUrl ? (
               <video
-                className="w-screen h-screen"
+                className="w-full h-full object-contain"
                 src={videoUrl}
                 controls
                 autoPlay
