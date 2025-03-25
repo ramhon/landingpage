@@ -12,6 +12,7 @@ function Policy() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const loader = useRef(null);
+  const modalRef = useRef(null);
 
   const fetchMedia = useCallback(async () => {
     const pageSize = 12;
@@ -62,6 +63,40 @@ function Policy() {
   const prevItem = () => setCurrentIndex((i) => (i > 0 ? i - 1 : media.length - 1));
   const nextItem = () => setCurrentIndex((i) => (i < media.length - 1 ? i + 1 : 0));
 
+  // Navegação por teclado e toque
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (currentIndex !== null) {
+        if (e.key === 'ArrowLeft') prevItem();
+        if (e.key === 'ArrowRight') nextItem();
+        if (e.key === 'Escape') closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    let startX = 0;
+    const handleTouchStart = (e) => startX = e.touches[0].clientX;
+    const handleTouchEnd = (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) nextItem();
+      if (endX - startX > 50) prevItem();
+    };
+    const modal = modalRef.current;
+    if (modal) {
+      modal.addEventListener('touchstart', handleTouchStart);
+      modal.addEventListener('touchend', handleTouchEnd);
+    }
+    return () => {
+      if (modal) {
+        modal.removeEventListener('touchstart', handleTouchStart);
+        modal.removeEventListener('touchend', handleTouchEnd);
+      }
+    };
+  }, [currentIndex]);
+
   return (
     <div className="min-h-screen bg-[#121212] px-6 py-24 text-white">
       <h1 className="text-4xl font-light mb-12">Galeria<span className="text-red-500">.</span></h1>
@@ -93,7 +128,7 @@ function Policy() {
       </div>
 
       {currentIndex !== null && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+        <div ref={modalRef} className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
           <button className="absolute top-6 right-6 text-white" onClick={closeModal}>
             <X size={32} />
           </button>
