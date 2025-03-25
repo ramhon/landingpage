@@ -78,12 +78,13 @@ function Policy() {
                 <img
                   src={item.url}
                   alt="galeria"
-                  className="w-full h-48 object-cover rounded-md group-hover:scale-105 transition-transform"
+                  className="w-full aspect-square object-cover rounded-md scale-90 opacity-0 group-hover:scale-105 transition-transform duration-700 ease-out animate-fade-in"
+                  style={{ animation: 'zoomIn 0.8s forwards' }}
                 />
               ) : (
                 <video
                   src={item.url}
-                  className="w-full h-48 object-cover rounded-md"
+                  className="w-full aspect-square object-cover rounded-md"
                   muted
                   playsInline
                 />
@@ -134,6 +135,19 @@ function Policy() {
           </button>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes zoomIn {
+          0% {
+            transform: scale(0.9);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 }
