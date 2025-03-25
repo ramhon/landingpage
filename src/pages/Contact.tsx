@@ -75,7 +75,7 @@ function Contact() {
           >
             {/* ocultar captchas e redirecionamento */}
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://www.ramhon.com.br/obrigado" />
+            <input type="hidden" name="_next" value="https://www.ramhon.com.br/contato" />
 
             <div>
               <label htmlFor="name" className="block text-sm mb-2">Nome</label>
