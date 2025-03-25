@@ -41,7 +41,7 @@ function SobreMim() {
             </p>
           </section>
 
-          <section className="space-y-4">
+          {/* <section className="space-y-4">
             <h2 className="text-2xl font-light">Presença Online</h2>
             <ul className="list-disc list-inside text-white/80 space-y-2">
               <li>📸 Instagram profissional: <a href="https://instagram.com/ramhonpeixoto" className="text-red-500 underline">@ramhonpeixoto</a></li>
@@ -50,7 +50,7 @@ function SobreMim() {
               <li>🔗 LinkedIn: <a href="https://br.linkedin.com/in/ramhonpeixoto" className="text-red-500 underline">/in/ramhonpeixoto</a></li>
               <li>🌐 Site: <a href="https://ramhon.com.br" className="text-red-500 underline">ramhon.com.br</a></li>
             </ul>
-          </section>
+          </section> */}
 
           <section className="space-y-4">
             <h2 className="text-2xl font-light">Contato</h2>
@@ -58,7 +58,7 @@ function SobreMim() {
               Para agendar um ensaio, cobertura de evento ou produção de vídeo com Ramhon Peixoto, entre em contato pelo site ou envie um e-mail para:
             </p>
             <p className="text-white font-medium">📧 contato@ramhon.com.br</p>
-            <p className="text-white/70 text-sm">CNPJ 50.894.832/0001-77</p>
+    //      /*  <p className="text-white/70 text-sm">CNPJ 50.894.832/0001-77</p> */
           </section>
         </div>
       </div>
