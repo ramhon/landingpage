@@ -69,7 +69,7 @@ function Contact() {
 
           {/* Formulário com FormSubmit */}
           <form
-            action="https://formsubmit.co/contato@ramhon.com.br"
+            action="https://formsubmit.co/contato@ramhon.com.br/contato"
             method="POST"
             className="space-y-6"
           >
