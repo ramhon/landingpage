@@ -1,19 +1,45 @@
-import React, { useState, useEffect } from 'react';
+""import React, { useState, useEffect } from 'react';
 import { Play, X } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://ezwzjnvasgpzsjgwjesq.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d3pqbnZhc2dwenNqZ3dqZXNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjM2MjcsImV4cCI6MjA1ODM5OTYyN30.cSWLb7taf4D6fepe2oKk5oZsNYehoclmerDllQ1P5xw';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Home() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
   const [animateContent, setAnimateContent] = useState(false);
+  const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
     document.documentElement.lang = 'pt-BR';
-    const timerBg = setTimeout(() => setShowBackground(true), 300); // delay do fundo
-    const timerContent = setTimeout(() => setAnimateContent(true), 1600); // delay do conteúdo
+    const timerBg = setTimeout(() => setShowBackground(true), 300);
+    const timerContent = setTimeout(() => setAnimateContent(true), 1600);
     return () => {
       clearTimeout(timerBg);
       clearTimeout(timerContent);
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      const { data, error } = await supabase.storage
+        .from('galeria')
+        .list('videos/projetos', { limit: 1 });
+
+      if (data && data.length > 0) {
+        const videoPath = data[0].name;
+        const fullUrl = `${supabaseUrl}/storage/v1/object/public/galeria/videos/projetos/${videoPath}`;
+        setVideoUrl(fullUrl);
+      }
+
+      if (error) {
+        console.error('Erro ao buscar vídeo:', error.message);
+      }
+    };
+
+    fetchVideo();
   }, []);
 
   const backgroundImageUrl = window.innerWidth <= 768
@@ -22,7 +48,6 @@ function Home() {
 
   return (
     <div className="relative w-full h-screen pt-20 overflow-hidden">
-      {/* Imagem de fundo com fade + zoom usando Tailwind */}
       {showBackground && (
         <div
           className="absolute inset-0 z-0 opacity-0 scale-110 animate-zoomFade bg-cover bg-no-repeat"
@@ -34,10 +59,8 @@ function Home() {
         />
       )}
 
-      {/* Overlay escura */}
       <div className="absolute inset-0 bg-black/50 z-10" />
 
-      {/* Conteúdo com animação fade-in */}
       <div className={`relative z-20 flex flex-col items-start space-y-4 px-6 pb-6 h-full justify-center transition-all duration-1000 ease-out ${animateContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <button
           onClick={() => setIsVideoOpen(true)}
@@ -58,7 +81,6 @@ function Home() {
         </p>
       </div>
 
-      {/* Modal de vídeo */}
       {isVideoOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
           <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
@@ -68,19 +90,20 @@ function Home() {
             >
               <X size={24} />
             </button>
-            <iframe
-              className="w-screen h-screen"
-              src="https://player.vimeo.com/video/1067821979?h=db40bddbb1&badge=0&autoplay=1&autopause=0&player_id=0&app_id=58479"
-              title="Apresentação"
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-              allowFullScreen
-            ></iframe>
+            {videoUrl ? (
+              <video
+                className="w-screen h-screen"
+                src={videoUrl}
+                controls
+                autoPlay
+              />
+            ) : (
+              <p className="text-white">Carregando vídeo...</p>
+            )}
           </div>
         </div>
       )}
 
-      {/* Estilo personalizado para animação da imagem de fundo */}
       <style>
         {`
           @keyframes zoomFade {
