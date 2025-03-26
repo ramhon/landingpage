@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const supabaseUrl = 'https://ezwzjnvasgpzsjgwjesq.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d3pqbnZhc2dwenNqZ3dqZXNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjM2MjcsImV4cCI6MjA1ODM5OTYyN30.cSWLb7taf4D6fepe2oKk5oZsNYehoclmerDllQ1P5xw';
+const supabaseUrl = 'https://whwymlolluhkacslhuru.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indod3ltbG9sbHVoa2Fjc2xodXJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwMTc1MTUsImV4cCI6MjA1ODU5MzUxNX0.soa4alBf9SOXQ2qxuXfYa2evlDIPbUOfUy9AGgZ3rPI';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Policy() {
@@ -18,7 +18,7 @@ function Policy() {
     const pageSize = 12;
     const offset = page * pageSize;
 
-    const { data: fotos, error } = await supabase.storage.from('galeria').list('fotos/politica', {
+    const { data: fotos, error } = await supabase.storage.from('galeria').list('politica/fotos', {
       limit: pageSize,
       offset,
       sortBy: { column: 'name', order: 'asc' },
@@ -37,7 +37,7 @@ function Policy() {
 
     const imageUrls = fotos.map(file => ({
       type: 'image',
-      url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/politica/${file.name}`,
+      url: `${supabaseUrl}/storage/v1/object/public/galeria/politica/fotos/${file.name}`,
     }));
 
     setMedia(prev => [...prev, ...imageUrls]);
