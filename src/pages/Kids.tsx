@@ -42,7 +42,7 @@ function Kids() {
 
   return (
     <div
-      className="min-h-screen pt-24 px-6 md:px-12 bg-cover bg-center relative"
+      className="min-h-screen pt-24 px-6 md:px-12 bg-fixed bg-cover bg-center relative"
       style={{
         backgroundImage: 'url(https://www.panetteria.com.br/images/festainfantil.jpg)'
       }}
