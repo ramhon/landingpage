@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { AdvancedImage, placeholder } from '@cloudinary/react';
+import { Cloudinary } from '@cloudinary/url-gen';
+import { auto } from '@cloudinary/url-gen/actions/resize';
+import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const cloudName = 'dflzzn8gx';
+const cloud = new Cloudinary({ cloud: { cloudName: 'dflzzn8gx' } });
 const folderPath = 'Galeria/politica/fotos';
 
 function Policy() {
@@ -14,7 +18,7 @@ function Policy() {
 
   const fetchMedia = useCallback(async () => {
     const pageSize = 12;
-    const url = `https://res.cloudinary.com/${cloudName}/image/list/${folderPath.replaceAll('/', '_')}.json`;
+    const url = `https://res.cloudinary.com/dflzzn8gx/image/list/${folderPath.replaceAll('/', '_')}.json`;
 
     try {
       const response = await fetch(url);
@@ -28,12 +32,14 @@ function Policy() {
         return;
       }
 
-      const imageUrls = images.map(file => ({
-        type: 'image',
-        url: `https://res.cloudinary.com/${cloudName}/image/upload/v${file.version}/${file.public_id}.${file.format}`
-      }));
+      const imageObjs = images.map(file =>
+        cloud.image(file.public_id)
+          .format('auto')
+          .quality('auto')
+          .resize(auto().gravity(autoGravity()).width(500).height(500))
+      );
 
-      setMedia(prev => [...prev, ...imageUrls]);
+      setMedia(prev => [...prev, ...imageObjs]);
     } catch (err) {
       console.error(err);
       setHasMore(false);
@@ -115,9 +121,10 @@ function Policy() {
               className="cursor-pointer group relative overflow-hidden"
               onClick={() => openModal(idx)}
             >
-              <img
-                src={item.url}
-                alt="galeria"
+              <AdvancedImage
+                cldImg={item}
+                plugins={[placeholder()]} 
+                loading="lazy"
                 className="w-full aspect-square object-cover rounded-md scale-90 opacity-0 group-hover:scale-105 transition-transform duration-700 ease-out animate-fade-in"
                 style={{ animation: 'zoomIn 0.8s forwards' }}
               />
@@ -139,10 +146,10 @@ function Policy() {
             <ChevronLeft size={32} />
           </button>
           <div className="max-w-4xl w-full px-4">
-            <img
-              src={media[currentIndex].url}
+            <AdvancedImage
+              cldImg={media[currentIndex]}
+              plugins={[placeholder()]}
               className="w-full max-h-[80vh] object-contain animate-fade-in"
-              alt="media"
             />
           </div>
           <button className="absolute right-6 text-white" onClick={nextItem}>
