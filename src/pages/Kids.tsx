@@ -6,7 +6,7 @@ const videos = [
     id: 1,
     title: 'Aprendendo Cores',
     description: 'Uma aventura colorida para crianças',
-    url: 'https://drive.google.com/file/d/1-jsl7CDvLxCYghHMpzKxB6W8UHaREQL_/view?t=3'
+    url: 'https://drive.google.com/file/d/1-jsl7CDvLxCYghHMpzKxB6W8UHaREQL_/view'
   },
   {
     id: 2,
