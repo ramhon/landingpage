@@ -35,20 +35,25 @@ function Kids() {
     fetchVideos();
   }, []);
 
+  const handleFullScreen = (e) => {
+    const iframe = e.target.closest('.player-container')?.querySelector('iframe');
+    if (iframe?.requestFullscreen) iframe.requestFullscreen();
+  };
+
   return (
-    <div className="min-h-screen pt-24 px-6 md:px-12 bg-gradient-to-b from-purple-100 to-pink-100">
+    <div className="min-h-screen pt-24 px-6 md:px-12 bg-[#1e1e1e]">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-light text-purple-800 mb-12">
+        <h1 className="text-4xl font-light text-white mb-12">
           Espaço Infantil<span className="text-pink-500">.</span>
         </h1>
 
         {videos.length === 0 ? (
-          <p className="text-center text-purple-600">Nenhum vídeo encontrado ou ainda carregando...</p>
+          <p className="text-center text-white/70">Nenhum vídeo encontrado ou ainda carregando...</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {videos.map((video, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg">
-                <div className="aspect-video">
+              <div key={index} className="bg-[#2c2c2c] rounded-xl overflow-hidden shadow-lg">
+                <div className="aspect-video player-container" onClick={handleFullScreen}>
                   <ReactPlayer
                     url={video.url}
                     width="100%"
@@ -57,7 +62,7 @@ function Kids() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-medium text-purple-800 mb-2">{video.title}</h3>
+                  <h3 className="text-xl font-medium text-white mb-2">{video.title}</h3>
                 </div>
               </div>
             ))}
