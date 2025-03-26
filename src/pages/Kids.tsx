@@ -41,8 +41,15 @@ function Kids() {
   };
 
   return (
-    <div className="min-h-screen pt-24 px-6 md:px-12 bg-[#1e1e1e]">
-      <div className="max-w-6xl mx-auto">
+    <div
+      className="min-h-screen pt-24 px-6 md:px-12 bg-cover bg-center relative"
+      style={{
+        backgroundImage: 'url(https://www.panetteria.com.br/images/festainfantil.jpg)'
+      }}
+    >
+      <div className="absolute inset-0 bg-black/60 z-0"></div>
+
+      <div className="relative z-10 max-w-6xl mx-auto">
         <h1 className="text-4xl font-light text-white mb-12">
           Espaço Infantil<span className="text-pink-500">.</span>
         </h1>
