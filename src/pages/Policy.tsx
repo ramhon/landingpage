@@ -1,46 +1,43 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const supabaseUrl = 'https://ezwzjnvasgpzsjgwjesq.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d3pqbnZhc2dwenNqZ3dqZXNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjM2MjcsImV4cCI6MjA1ODM5OTYyN30.cSWLb7taf4D6fepe2oKk5oZsNYehoclmerDllQ1P5xw';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const cloudName = 'dflzzn8gx';
+const folderPath = 'Galeria/politica/fotos';
 
 function Policy() {
   const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const loader = useRef(null);
   const modalRef = useRef(null);
 
   const fetchMedia = useCallback(async () => {
     const pageSize = 12;
-    const offset = page * pageSize;
+    const url = `https://res.cloudinary.com/${cloudName}/image/list/${folderPath.replaceAll('/', '_')}.json`;
 
-    const { data: fotos, error } = await supabase.storage.from('galeria').list('fotos/politica', {
-      limit: pageSize,
-      offset,
-      sortBy: { column: 'name', order: 'asc' },
-    });
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Erro ao buscar imagens do Cloudinary');
 
-    if (error) {
-      console.error('Erro ao buscar imagens:', error);
+      const data = await response.json();
+      const images = data.resources.slice((page - 1) * pageSize, page * pageSize);
+
+      if (images.length === 0) {
+        setHasMore(false);
+        return;
+      }
+
+      const imageUrls = images.map(file => ({
+        type: 'image',
+        url: `https://res.cloudinary.com/${cloudName}/image/upload/${file.public_id}.${file.format}`
+      }));
+
+      setMedia(prev => [...prev, ...imageUrls]);
+    } catch (err) {
+      console.error(err);
       setHasMore(false);
-      return;
     }
-
-    if (fotos.length === 0) {
-      setHasMore(false);
-      return;
-    }
-
-    const imageUrls = fotos.map(file => ({
-      type: 'image',
-      url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/politica/${file.name}`,
-    }));
-
-    setMedia(prev => [...prev, ...imageUrls]);
   }, [page]);
 
   useEffect(() => {
@@ -108,7 +105,7 @@ function Policy() {
       <h1 className="text-4xl font-light mb-12">Galeria<span className="text-red-500">.</span></h1>
       {media.length === 0 ? (
         <p className="text-white/60 text-center text-sm mb-12">
-          Nenhuma mídia encontrada. Verifique o Supabase ou as permissões.
+          Nenhuma mídia encontrada. Verifique o Cloudinary ou o nome da pasta.
         </p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
