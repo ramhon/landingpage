@@ -30,7 +30,7 @@ function Policy() {
 
       const imageUrls = images.map(file => ({
         type: 'image',
-        url: `https://res.cloudinary.com/${cloudName}/image/upload/${file.public_id}.${file.format}`
+        url: `https://res.cloudinary.com/${cloudName}/image/upload/v${file.version}/${file.public_id}.${file.format}`
       }));
 
       setMedia(prev => [...prev, ...imageUrls]);
