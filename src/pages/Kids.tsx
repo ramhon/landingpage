@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import ReactPlayer from 'react-player';
 
 const supabaseUrl = 'https://whwymlolluhkacslhuru.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // sua anon key
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indod3ltbG9sbHVoa2Fjc2xodXJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwMTc1MTUsImV4cCI6MjA1ODU5MzUxNX0.soa4alBf9SOXQ2qxuXfYa2evlDIPbUOfUy9AGgZ3rPI';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Kids() {
@@ -42,31 +42,27 @@ function Kids() {
           Espaço Infantil<span className="text-pink-500">.</span>
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {videos.map((video, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl overflow-hidden shadow-lg"
-            >
-              <div className="aspect-video">
-                <ReactPlayer
-                  url={video.url}
-                  width="100%"
-                  height="100%"
-                  controls
-                />
+        {videos.length === 0 ? (
+          <p className="text-center text-purple-600">Nenhum vídeo encontrado ou ainda carregando...</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {videos.map((video, index) => (
+              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg">
+                <div className="aspect-video">
+                  <ReactPlayer
+                    url={video.url}
+                    width="100%"
+                    height="100%"
+                    controls
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-purple-800 mb-2">{video.title}</h3>
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-medium text-purple-800 mb-2">
-                  {video.title}
-                </h3>
-                {video.description && (
-                  <p className="text-gray-600">{video.description}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
