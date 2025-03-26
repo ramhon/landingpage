@@ -1,49 +1,46 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { AdvancedImage, placeholder } from '@cloudinary/react';
-import { Cloudinary } from '@cloudinary/url-gen';
-import { auto } from '@cloudinary/url-gen/actions/resize';
-import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
+import { createClient } from '@supabase/supabase-js';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const cloud = new Cloudinary({ cloud: { cloudName: 'dflzzn8gx' } });
-const folderPath = 'Galeria/politica/fotos';
+const supabaseUrl = 'https://ezwzjnvasgpzsjgwjesq.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d3pqbnZhc2dwenNqZ3dqZXNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI4MjM2MjcsImV4cCI6MjA1ODM5OTYyN30.cSWLb7taf4D6fepe2oKk5oZsNYehoclmerDllQ1P5xw';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Policy() {
   const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const loader = useRef(null);
   const modalRef = useRef(null);
 
   const fetchMedia = useCallback(async () => {
     const pageSize = 12;
-    const url = `https://res.cloudinary.com/dflzzn8gx/image/list/${folderPath.replaceAll('/', '_')}.json`;
+    const offset = page * pageSize;
 
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Erro ao buscar imagens do Cloudinary');
+    const { data: fotos, error } = await supabase.storage.from('galeria').list('fotos/politica', {
+      limit: pageSize,
+      offset,
+      sortBy: { column: 'name', order: 'asc' },
+    });
 
-      const data = await response.json();
-      const images = data.resources.slice((page - 1) * pageSize, page * pageSize);
-
-      if (images.length === 0) {
-        setHasMore(false);
-        return;
-      }
-
-      const imageObjs = images.map(file =>
-        cloud.image(file.public_id)
-          .format('auto')
-          .quality('auto')
-          .resize(auto().gravity(autoGravity()).width(500).height(500))
-      );
-
-      setMedia(prev => [...prev, ...imageObjs]);
-    } catch (err) {
-      console.error(err);
+    if (error) {
+      console.error('Erro ao buscar imagens:', error);
       setHasMore(false);
+      return;
     }
+
+    if (fotos.length === 0) {
+      setHasMore(false);
+      return;
+    }
+
+    const imageUrls = fotos.map(file => ({
+      type: 'image',
+      url: `${supabaseUrl}/storage/v1/object/public/galeria/fotos/politica/${file.name}`,
+    }));
+
+    setMedia(prev => [...prev, ...imageUrls]);
   }, [page]);
 
   useEffect(() => {
@@ -111,7 +108,7 @@ function Policy() {
       <h1 className="text-4xl font-light mb-12">Galeria<span className="text-red-500">.</span></h1>
       {media.length === 0 ? (
         <p className="text-white/60 text-center text-sm mb-12">
-          Nenhuma mídia encontrada. Verifique o Cloudinary ou o nome da pasta.
+          Nenhuma mídia encontrada. Verifique o Supabase ou as permissões.
         </p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -121,10 +118,9 @@ function Policy() {
               className="cursor-pointer group relative overflow-hidden"
               onClick={() => openModal(idx)}
             >
-              <AdvancedImage
-                cldImg={item}
-                plugins={[placeholder()]} 
-                loading="lazy"
+              <img
+                src={item.url}
+                alt="galeria"
                 className="w-full aspect-square object-cover rounded-md scale-90 opacity-0 group-hover:scale-105 transition-transform duration-700 ease-out animate-fade-in"
                 style={{ animation: 'zoomIn 0.8s forwards' }}
               />
@@ -146,10 +142,10 @@ function Policy() {
             <ChevronLeft size={32} />
           </button>
           <div className="max-w-4xl w-full px-4">
-            <AdvancedImage
-              cldImg={media[currentIndex]}
-              plugins={[placeholder()]}
+            <img
+              src={media[currentIndex].url}
               className="w-full max-h-[80vh] object-contain animate-fade-in"
+              alt="media"
             />
           </div>
           <button className="absolute right-6 text-white" onClick={nextItem}>
