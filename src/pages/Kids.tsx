@@ -56,9 +56,12 @@ function Kids() {
 
   return (
     <div
-      className="min-h-screen pt-24 px-6 md:px-12 relative bg-fixed bg-cover bg-center"
+      className="min-h-screen pt-24 px-6 md:px-12 relative"
       style={{
-        backgroundImage: 'url(https://www.panetteria.com.br/images/festainfantil.jpg)'
+        backgroundImage: 'url(https://www.panetteria.com.br/images/festainfantil.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
       }}
     >
       <div className="fixed inset-0 bg-black/60 z-0" />
