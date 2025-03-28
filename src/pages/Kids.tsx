@@ -10,23 +10,24 @@ function Kids() {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const { data, error } = await supabase
-        .storage
-        .from('galeria')
-        .list('infantil/videos', {
-          limit: 100,
-          sortBy: { column: 'name', order: 'asc' }
-        });
+      const { data, error } = await supabase.storage.from('galeria').list('infantil/videos', {
+        limit: 100,
+        sortBy: { column: 'name', order: 'asc' }
+      });
 
       if (error) {
         console.error('Erro ao carregar vídeos:', error);
         return;
       }
 
-      const videoUrls = data.map(file => ({
-        title: file.name.split('.')[0].replace(/_/g, ' '),
-        url: `${supabaseUrl}/storage/v1/object/public/galeria/infantil/videos/${file.name}`
-      }));
+      const videoUrls = data.map(file => {
+        const name = file.name.split('.')[0];
+        return {
+          title: name.replace(/_/g, ' '),
+          videoUrl: `${supabaseUrl}/storage/v1/object/public/galeria/infantil/videos/${file.name}`,
+          thumbUrl: `${supabaseUrl}/storage/v1/object/public/galeria/infantil/capa/${name}.png`
+        };
+      });
 
       setVideos(videoUrls);
     };
@@ -99,13 +100,11 @@ function Kids() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {videos.map((video, idx) => (
               <div key={idx} className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg overflow-hidden">
-                <div className="aspect-video relative cursor-pointer" onClick={(e) => openFullscreen(e, video.url)}>
-                  <video
-                    src={video.url}
+                <div className="aspect-video relative cursor-pointer" onClick={(e) => openFullscreen(e, video.videoUrl)}>
+                  <img
+                    src={video.thumbUrl}
+                    alt={video.title}
                     className="w-full h-full object-cover"
-                    muted
-                    preload="metadata"
-                    playsInline
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-lg font-bold opacity-0 hover:opacity-100 transition">
                     ▶ Assistir
