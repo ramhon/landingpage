@@ -47,10 +47,32 @@ function Kids() {
     video.style.zIndex = 9999;
     video.style.backgroundColor = 'black';
 
-    video.addEventListener('ended', () => document.body.removeChild(video));
-    video.addEventListener('click', () => document.body.removeChild(video));
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '✕';
+    closeBtn.style.position = 'absolute';
+    closeBtn.style.top = '10px';
+    closeBtn.style.right = '10px';
+    closeBtn.style.zIndex = 10000;
+    closeBtn.style.fontSize = '24px';
+    closeBtn.style.color = 'white';
+    closeBtn.style.background = 'transparent';
+    closeBtn.style.border = 'none';
+    closeBtn.style.cursor = 'pointer';
+
+    closeBtn.addEventListener('click', () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      document.body.removeChild(video);
+      document.body.removeChild(closeBtn);
+    });
+
+    video.addEventListener('ended', () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      document.body.removeChild(video);
+      document.body.removeChild(closeBtn);
+    });
 
     document.body.appendChild(video);
+    document.body.appendChild(closeBtn);
     video.requestFullscreen?.();
   };
 
