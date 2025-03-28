@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { X } from 'lucide-react';
 
 const supabaseUrl = 'https://whwymlolluhkacslhuru.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indod3ltbG9sbHVoa2Fjc2xodXJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwMTc1MTUsImV4cCI6MjA1ODU5MzUxNX0.soa4alBf9SOXQ2qxuXfYa2evlDIPbUOfUy9AGgZ3rPI';
@@ -36,45 +37,50 @@ function Kids() {
   }, []);
 
   const openFullscreen = (e, url) => {
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.zIndex = 9999;
+    overlay.style.backgroundColor = 'black';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+
     const video = document.createElement('video');
     video.src = url;
     video.controls = true;
     video.autoplay = true;
-    video.style.position = 'fixed';
-    video.style.top = 0;
-    video.style.left = 0;
-    video.style.width = '100vw';
-    video.style.height = '100vh';
-    video.style.zIndex = 9999;
-    video.style.backgroundColor = 'black';
+    video.style.width = '100%';
+    video.style.height = '100%';
+    video.style.maxWidth = '100vw';
+    video.style.maxHeight = '100vh';
+    video.style.objectFit = 'contain';
 
     const closeBtn = document.createElement('button');
-    closeBtn.textContent = '✕';
+    closeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="white"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>';
     closeBtn.style.position = 'absolute';
-    closeBtn.style.top = '10px';
-    closeBtn.style.right = '10px';
+    closeBtn.style.top = '16px';
+    closeBtn.style.left = '50%';
+    closeBtn.style.transform = 'translateX(-50%)';
     closeBtn.style.zIndex = 10000;
-    closeBtn.style.fontSize = '24px';
-    closeBtn.style.color = 'white';
     closeBtn.style.background = 'transparent';
     closeBtn.style.border = 'none';
     closeBtn.style.cursor = 'pointer';
 
     closeBtn.addEventListener('click', () => {
-      if (document.fullscreenElement) document.exitFullscreen();
-      document.body.removeChild(video);
-      document.body.removeChild(closeBtn);
+      document.body.removeChild(overlay);
     });
 
     video.addEventListener('ended', () => {
-      if (document.fullscreenElement) document.exitFullscreen();
-      document.body.removeChild(video);
-      document.body.removeChild(closeBtn);
+      document.body.removeChild(overlay);
     });
 
-    document.body.appendChild(video);
-    document.body.appendChild(closeBtn);
-    video.requestFullscreen?.();
+    overlay.appendChild(video);
+    overlay.appendChild(closeBtn);
+    document.body.appendChild(overlay);
   };
 
   return (
@@ -84,7 +90,8 @@ function Kids() {
         backgroundImage: 'url(https://www.panetteria.com.br/images/festainfantil.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'fixed',
+        backgroundRepeat: 'no-repeat'
       }}
     >
       <div className="fixed inset-0 bg-black/60 z-0" />
@@ -106,8 +113,8 @@ function Kids() {
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-lg font-bold opacity-0 hover:opacity-100 transition">
-                    ▶ Assistir
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-4xl">
+                    ▶
                   </div>
                 </div>
                 <div className="p-4 text-white">
