@@ -34,7 +34,7 @@ function Header({ isMenuOpen, setIsMenuOpen }) {
     { path: '/sobre', label: 'Sobre' },
     { path: '/politica', label: 'Politica' },
 //    { path: '/videos', label: 'Videos' },
-//    { path: '/infantil', label: 'Infantil' },
+    { path: '/infantil', label: 'Infantil' },
     { path: '/contato', label: 'Contato' },
 //    { path: '/LinkBio', label: 'LinkBio' },
   ];
@@ -80,7 +80,7 @@ function Navigation({ isMenuOpen, setIsMenuOpen }) {
     { path: '/sobre', label: 'Sobre' },
     { path: '/politica', label: 'Politica' },
 //    { path: '/videos', label: 'Videos' },
-//    { path: '/infantil', label: 'Infantil' },
+    { path: '/infantil', label: 'Infantil' },
     { path: '/contato', label: 'Contato' },
  //   { path: '/LinkBio', label: 'LinkBio' },
   ];
