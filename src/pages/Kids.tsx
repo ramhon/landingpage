@@ -60,9 +60,9 @@ function Kids() {
     video.style.objectFit = 'contain';
 
     const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="white"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>';
+    closeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="white"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>';
     closeBtn.style.position = 'absolute';
-    closeBtn.style.top = '16px';
+    closeBtn.style.top = '32px';
     closeBtn.style.left = '50%';
     closeBtn.style.transform = 'translateX(-50%)';
     closeBtn.style.zIndex = 10000;
@@ -113,8 +113,10 @@ function Kids() {
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-4xl">
-                    ▶
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5v14l11-7z" />
+                    </svg>
                   </div>
                 </div>
                 <div className="p-4 text-white">
